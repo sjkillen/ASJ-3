@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvijnui60l6ve"]
+
+[ext_resource type="PackedScene" uid="uid://usm4tltpc7y8" path="res://flashlight.tscn" id="1_4flbx"]
+
+[sub_resource type="GDScript" id="GDScript_sh265"]
+script/source = "extends CharacterBody3D
+
+var gravity = ProjectSettings.get_setting(\"physics/3d/default_gravity\")
+var speed = 4.0  # movement speed
+var jump_speed = 6.0  # determines jump height
+var mouse_sensitivity = 0.002  # turning speed
+
+
+func get_input():
+	var input = Input.get_vector(\"strafe_left\", \"strafe_right\", \"move_forward\", \"move_back\")
+	velocity.x = input.x * speed
+	velocity.z = input.y * speed
+
+func _physics_process(delta):
+	velocity.y += -gravity * delta
+	get_input()
+	move_and_slide()
+"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4flbx"]
+
+[node name="player" type="CharacterBody3D"]
+script = SubResource("GDScript_sh265")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_4flbx")
+
+[node name="flashlight" parent="." instance=ExtResource("1_4flbx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.83483, 0, 0.18368)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.430899, 0)
