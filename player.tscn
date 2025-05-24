@@ -12,7 +12,7 @@ var mouse_sensitivity = 0.002  # turning speed
 
 
 func get_input():
-	var input = Input.get_vector(\"strafe_left\", \"strafe_right\", \"move_forward\", \"move_back\")
+	var input = Input.get_vector(\"move_back\",\"move_forward\",\"strafe_left\", \"strafe_right\")
 	velocity.x = input.x * speed
 	velocity.z = input.y * speed
 
