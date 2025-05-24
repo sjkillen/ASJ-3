@@ -31,3 +31,5 @@ transform = Transform3D(0.197332, 0, -0.980337, 0, 1, 0, 0.980337, 0, 0.197332, 
 mesh = SubResource("QuadMesh_8mm7a")
 
 [node name="player" parent="." instance=ExtResource("2_2c62f")]
+
+[editable path="player"]

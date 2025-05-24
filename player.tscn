@@ -10,7 +10,18 @@ var speed = 4.0  # movement speed
 var jump_speed = 6.0  # determines jump height
 var mouse_sensitivity = 0.002  # turning speed
 
-
+func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+func _input(event):
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		rotate_y(-event.relative.x * mouse_sensitivity)
+		$Camera3D.rotate_z(-event.relative.y * mouse_sensitivity)
+		$Camera3D.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(89), deg_to_rad(89))
+		
+	if event.is_action_pressed(\"exit game\"):
+		get_tree().quit()
+		
 func get_input():
 	var input = Input.get_vector(\"move_back\",\"move_forward\",\"strafe_left\", \"strafe_right\")
 	velocity.x = input.x * speed
@@ -30,8 +41,8 @@ script = SubResource("GDScript_sh265")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_4flbx")
 
-[node name="flashlight" parent="." instance=ExtResource("1_4flbx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.83483, 0, 0.18368)
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.430899, 0)
+
+[node name="flashlight" parent="Camera3D" instance=ExtResource("1_4flbx")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.18368, -0.430899, -0.83483)
