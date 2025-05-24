@@ -24,12 +24,14 @@ func _input(event):
 		
 func get_input():
 	var input = Input.get_vector(\"move_back\",\"move_forward\",\"strafe_left\", \"strafe_right\")
-	velocity.x = input.x * speed
-	velocity.z = input.y * speed
+	return input
 
 func _physics_process(delta):
 	velocity.y += -gravity * delta
-	get_input()
+	var input = get_input()
+	var movement_dir = transform.basis * Vector3(input.x, 0, input.y)
+	velocity.x = movement_dir.x * speed
+	velocity.z = movement_dir.z * speed
 	move_and_slide()
 "
 
