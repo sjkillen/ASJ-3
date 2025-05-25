@@ -1,6 +1,6 @@
 extends Node3D
 
-func _process(delta):
+func _process(_delta):
 	$TextEdit.text = "you are on level " + str(Globals.level)
 	pass
 	
