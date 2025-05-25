@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dffp6u0g2ll7o"]
+[gd_scene load_steps=12 format=3 uid="uid://dffp6u0g2ll7o"]
 
 [ext_resource type="Texture2D" uid="uid://dafedeljkbqvi" path="res://beware sign.png" id="1_0f027"]
 [ext_resource type="Script" uid="uid://m4lnmvc7x4ut" path="res://main_scene.gd" id="1_gyfs4"]
@@ -17,6 +17,19 @@ text = "change level to 2"
 
 [sub_resource type="TextMesh" id="TextMesh_d5x1h"]
 text = "change level to 3"
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_gyfs4"]
+
+[sub_resource type="Sky" id="Sky_d5x1h"]
+sky_material = SubResource("PhysicalSkyMaterial_gyfs4")
+
+[sub_resource type="Environment" id="Environment_gyfs4"]
+background_mode = 2
+sky = SubResource("Sky_d5x1h")
+ssr_enabled = true
+ssao_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
 
 [node name="main scene" type="Node3D"]
 script = ExtResource("1_gyfs4")
@@ -60,7 +73,7 @@ shape = SubResource("SphereShape3D_gyfs4")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="level3"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -2.78141, 0)
-light_color = Color(1, 0.294118, 0, 1)
+light_color = Color(0.885652, 0.286842, 0.821472, 1)
 light_energy = 16.0
 spot_attenuation = 2.0
 spot_angle = 10.0
@@ -68,6 +81,15 @@ spot_angle = 10.0
 [node name="MeshInstance3D" type="MeshInstance3D" parent="level3"]
 transform = Transform3D(-0.788548, 0, -0.614974, 0, 1, 0, 0.614974, 0, -0.788548, 0, -5.58874, 0)
 mesh = SubResource("TextMesh_d5x1h")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gyfs4")
+
+[node name="sun in the sky" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.843991, 0.526498, 0.10237, 0.410253, -0.756636, 0.509111, 0.345502, -0.387688, -0.854592, 0, 2.44358, 0)
+light_color = Color(0.769434, 0.556909, 0.47251, 1)
+light_energy = 0.01
+shadow_enabled = true
 
 [connection signal="body_entered" from="level2" to="." method="_on_level_2_body_entered"]
 [connection signal="body_entered" from="level3" to="." method="_on_level_3_body_entered"]

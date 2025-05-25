@@ -21,8 +21,9 @@ func _input(event):
 		
 	if event.is_action_pressed(\"exit game\"):
 		get_tree().quit()
-	if event.is_action(\"jump\"):
-		velocity.y = 4
+	if Input.is_action_just_pressed(\"jump\"):
+		if is_on_floor():
+			velocity.y = 4.9
 		
 func get_input():
 	var input = Input.get_vector(\"move_back\",\"move_forward\",\"strafe_left\", \"strafe_right\")
@@ -49,4 +50,4 @@ shape = SubResource("CapsuleShape3D_4flbx")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.430899, 0)
 
 [node name="flashlight" parent="Camera3D" instance=ExtResource("1_4flbx")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.18368, -0.430899, -0.83483)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.500192, -0.537841, -0.786807)
