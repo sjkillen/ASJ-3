@@ -35,6 +35,7 @@ glow_enabled = true
 [node name="main scene" type="Node3D"]
 script = ExtResource("1_gyfs4")
 
+<<<<<<< Updated upstream
 [node name="wall" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.197332, 0, -0.980337, 0, 1, 0, 0.980337, 0, 0.197332, 2.56966, 0.623631, 0)
 mesh = SubResource("QuadMesh_8mm7a")
@@ -46,6 +47,56 @@ offset_right = 465.0
 offset_bottom = 70.0
 
 [node name="level2" type="Area3D" parent="."]
+=======
+[node name="test" parent="." instance=ExtResource("4_d5x1h")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gyfs4")
+
+[node name="sun in the sky" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.843991, 0.526498, 0.10237, 0.410253, -0.756636, 0.509111, 0.345502, -0.387688, -0.854592, 0, 2.44358, 0)
+light_color = Color(0.366567, 0.232707, 0.179101, 1)
+light_energy = 0.01
+shadow_enabled = true
+
+[node name="jamieworld" parent="." instance=ExtResource("4_8mm7a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0328, -1.0184, 2.08241)
+
+[node name="wall" type="MeshInstance3D" parent="jamieworld"]
+transform = Transform3D(-0.0289158, 0, 0.999582, 0, 1, 0, -0.999582, 0, -0.0289158, 7.04615, 1.64203, -2.08241)
+mesh = SubResource("QuadMesh_8mm7a")
+skeleton = NodePath("../..")
+
+[node name="pig_enemy" parent="jamieworld" instance=ExtResource("5_8mm7a")]
+transform = Transform3D(0.785663, 0, 0.618655, 0, 1, 0, -0.618655, 0, 0.785663, 3.59054, 0.974383, 3.52031)
+
+[node name="pig_enemy2" parent="jamieworld" instance=ExtResource("5_8mm7a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.434648, 0.974383, 2.98535)
+
+[node name="pig_enemy3" parent="jamieworld" instance=ExtResource("5_8mm7a")]
+transform = Transform3D(0.934869, 0, 0.354993, 0, 1, 0, -0.354993, 0, 0.934869, -1.98273, 0.889128, 0.33852)
+
+[node name="big pig enemy" parent="jamieworld" instance=ExtResource("6_hq1ik")]
+transform = Transform3D(3.775, 0, 0, 0, 3.775, 0, 0, 0, 3.775, -11.4366, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="jamieworld/big pig enemy"]
+transform = Transform3D(0.264901, 0, 0, 0, 0.264901, 0, 0, 0, 0.264901, 1.73195, 1.59451, 0.31274)
+light_color = Color(0.793541, 0.679857, 0.268914, 1)
+light_energy = 0.1
+omni_range = 3.843
+omni_attenuation = 8.667
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="jamieworld/big pig enemy"]
+transform = Transform3D(0.264901, 0, 0, 0, 0.264901, 0, 0, 0, 0.264901, 1.74096, 1.59451, -0.301829)
+light_color = Color(0.618752, 0, 0.0130155, 1)
+light_energy = 0.1
+omni_range = 3.843
+omni_attenuation = 8.667
+
+[node name="debug level switch" type="Node3D" parent="."]
+
+[node name="level2" type="Area3D" parent="debug level switch"]
+>>>>>>> Stashed changes
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.97248, 6.49429, 4.38167)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="level2"]
