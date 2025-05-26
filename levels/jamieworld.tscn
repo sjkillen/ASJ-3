@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjjr5i2mxy3sq"]
+
+[ext_resource type="PackedScene" uid="uid://bs6wwwhsqwsl3" path="res://levels/jamieworld.glb" id="1_j3r5u"]
+
+[node name="jamieworld" instance=ExtResource("1_j3r5u")]
