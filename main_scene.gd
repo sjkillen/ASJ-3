@@ -1,13 +1,13 @@
 extends Node3D
 
 func _process(_delta):
-	$TextEdit.text = "you are on level " + str(Globals.level)
+	#$TextEdit.text = "you are on level " + str(Globals.level)
 	pass
 	
-func _input(event):
-	if event.is_action_pressed("debug button"):
-		Globals.level += 1
-
+func _input(_event):
+	#if event.is_action_pressed("debug button"):
+	#	Globals.level += 1
+	pass
 
 func _on_level_2_body_entered(body):
 	if(body.is_in_group("player")):

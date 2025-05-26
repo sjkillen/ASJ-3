@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://nx1nailbnqe5"]
+
+[ext_resource type="Script" uid="uid://ca7oo6x7hbysk" path="res://big_pig_enemy.gd" id="1_lus1m"]
+[ext_resource type="PackedScene" uid="uid://bsdhqg5p8y8bg" path="res://slimepig/pig.tscn" id="2_uiv0a"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_djlhh"]
+
+[node name="big pig enemy" type="CharacterBody3D"]
+transform = Transform3D(3.775, 0, 0, 0, 3.775, 0, 0, 0, 3.775, 0, 0, 0)
+script = ExtResource("1_lus1m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-7.43094e-08, 1.7, -7.43094e-08, 0, -7.43094e-08, -1.7, -1.7, -7.43094e-08, 3.24817e-15, 0, 0.812579, 0)
+shape = SubResource("CapsuleShape3D_djlhh")
+
+[node name="pig" parent="." instance=ExtResource("2_uiv0a")]
+process_mode = 4
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Skeleton3D" parent="pig/SlimePigRig" index="0"]
+bones/1/rotation = Quaternion(-0.0494221, 0, 0, 0.998778)
+
+[editable path="pig"]

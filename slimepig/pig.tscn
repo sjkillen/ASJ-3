@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsdhqg5p8y8bg"]
+[gd_scene load_steps=6 format=3 uid="uid://bsdhqg5p8y8bg"]
 
 [ext_resource type="PackedScene" uid="uid://bpbhhiin72yp8" path="res://slimepig/pig.glb" id="1_1og0s"]
 [ext_resource type="Script" uid="uid://ci33hxteh8qmt" path="res://slimepig/pig.gd" id="2_wn63x"]
@@ -15,15 +15,11 @@ states/Test/position = Vector2(468, 78)
 transitions = ["Start", "Test", SubResource("AnimationNodeStateMachineTransition_kr6kf")]
 graph_offset = Vector2(-45, -57)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wn63x"]
-radius = 1.03001
-height = 4.13871
-
 [node name="pig" instance=ExtResource("1_1og0s")]
 script = ExtResource("2_wn63x")
 
 [node name="Skeleton3D" parent="SlimePigRig" index="0"]
-bones/1/rotation = Quaternion(-0.385614, 0, -5.85799e-08, 0.92266)
+bones/1/rotation = Quaternion(-0.385614, 0, -3.82372e-08, 0.92266)
 bones/12/rotation = Quaternion(0.601501, 0.601501, 0.371748, -0.371748)
 bones/25/rotation = Quaternion(-3.31416e-07, 0.999975, 0.00709155, -7.5496e-08)
 bones/29/rotation = Quaternion(-3.31416e-07, 0.999975, 0.00709155, -7.5496e-08)
@@ -32,9 +28,3 @@ bones/30/rotation = Quaternion(0.984196, 4.7904e-09, 1.21985e-07, -0.177084)
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource("AnimationNodeStateMachine_gvkyt")
 anim_player = NodePath("../AnimationPlayer")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="4"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.945899, -0.0393249)
-shape = SubResource("CapsuleShape3D_wn63x")
