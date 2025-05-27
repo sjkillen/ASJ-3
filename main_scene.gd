@@ -1,7 +1,6 @@
 extends Node3D
 
 func _process(_delta):
-	#$TextEdit.text = "you are on level " + str(Globals.level)
 	pass
 	
 func _input(_event):

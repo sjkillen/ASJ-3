@@ -38,13 +38,6 @@ text = "change level to 3"
 [node name="main scene" type="Node3D"]
 script = ExtResource("1_gyfs4")
 
-[node name="TextEdit" type="TextEdit" parent="."]
-visible = false
-offset_left = 55.0
-offset_top = 39.0
-offset_right = 465.0
-offset_bottom = 70.0
-
 [node name="test" parent="." instance=ExtResource("4_d5x1h")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
