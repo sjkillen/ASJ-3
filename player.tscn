@@ -6,11 +6,11 @@
 script/source = "extends CharacterBody3D
 
 var gravity = ProjectSettings.get_setting(\"physics/3d/default_gravity\")
+#var gravity = 0
 var speed = 4.0  # movement speed
 var jump_speed = 4.9  # determines jump height
 var mouse_sensitivity = 0.002  # turning speed
 var hitpoints = 3
-var armtween = create_tween()
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
