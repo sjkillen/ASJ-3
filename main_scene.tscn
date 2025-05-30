@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dvyy2ws5nw7jb" path="res://levels/test.tscn" id="4_d5x1h"]
 [ext_resource type="PackedScene" uid="uid://bbxnys4s0xb" path="res://pig_enemy.tscn" id="5_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://nx1nailbnqe5" path="res://big_pig_enemy.tscn" id="6_hq1ik"]
-[ext_resource type="PackedScene" uid="uid://cud8aftmsjunv" path="res://big_empty_forest.tscn" id="7_nfk4m"]
+[ext_resource type="PackedScene" uid="uid://cud8aftmsjunv" path="res://levels/big_empty_forest.tscn" id="7_nfk4m"]
 [ext_resource type="PackedScene" uid="uid://oryuwyy57rnx" path="res://doors_and_roots_level_1.tscn" id="8_66tet"]
 [ext_resource type="PackedScene" uid="uid://cdo7qtge8yqe2" path="res://levels/walk_and_enemy_level_2.tscn" id="9_7ycvg"]
 

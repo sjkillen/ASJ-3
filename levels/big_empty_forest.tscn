@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cud8aftmsjunv"]
+
+[ext_resource type="PackedScene" uid="uid://cicslbxsr8ao2" path="res://levels/big empty forest.glb" id="1_rfvyx"]
+[ext_resource type="Script" uid="uid://dpwf2tnjj0wx5" path="res://cube_005.gd" id="2_2vr7b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2vr7b"]
+size = Vector3(2, 2, 2)
+
+[node name="big empty forest" instance=ExtResource("1_rfvyx")]
+
+[node name="Cube_005" parent="." index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.7596, 8.17863, 10.0842)
+script = ExtResource("2_2vr7b")
+
+[node name="Area3D" type="Area3D" parent="Cube_005" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_005/Area3D" index="0"]
+shape = SubResource("BoxShape3D_2vr7b")
