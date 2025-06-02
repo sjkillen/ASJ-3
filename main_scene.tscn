@@ -1,15 +1,19 @@
-[gd_scene load_steps=24 format=4 uid="uid://dffp6u0g2ll7o"]
+[gd_scene load_steps=37 format=4 uid="uid://dffp6u0g2ll7o"]
 
 [ext_resource type="Texture2D" uid="uid://dafedeljkbqvi" path="res://beware sign.png" id="1_0f027"]
 [ext_resource type="Script" uid="uid://m4lnmvc7x4ut" path="res://main_scene.gd" id="1_gyfs4"]
 [ext_resource type="PackedScene" uid="uid://bjjr5i2mxy3sq" path="res://levels/jamieworld.tscn" id="4_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://dvyy2ws5nw7jb" path="res://levels/test.tscn" id="4_d5x1h"]
 [ext_resource type="PackedScene" uid="uid://bbxnys4s0xb" path="res://pig_enemy.tscn" id="5_8mm7a"]
+[ext_resource type="PackedScene" uid="uid://bh1nfkmt1g6ak" path="res://levels/redcarpetpost.tscn" id="6_671wp"]
 [ext_resource type="PackedScene" uid="uid://nx1nailbnqe5" path="res://big_pig_enemy.tscn" id="6_hq1ik"]
+[ext_resource type="Texture2D" uid="uid://b6phj2xbsx3pi" path="res://tree grafitti.png" id="7_mo76n"]
 [ext_resource type="PackedScene" uid="uid://cud8aftmsjunv" path="res://levels/big_empty_forest.tscn" id="7_nfk4m"]
 [ext_resource type="PackedScene" uid="uid://oryuwyy57rnx" path="res://doors_and_roots_level_1.tscn" id="8_66tet"]
 [ext_resource type="Script" uid="uid://bjtng4cnrwvy8" path="res://doors_and_roots_level_1.gd" id="8_wr18j"]
 [ext_resource type="PackedScene" uid="uid://cdo7qtge8yqe2" path="res://levels/walk_and_enemy_level_2.tscn" id="9_7ycvg"]
+[ext_resource type="PackedScene" uid="uid://6awdsxf5krd2" path="res://levels/fence.tscn" id="9_qwutr"]
+[ext_resource type="Script" uid="uid://d3g55h8ms5do3" path="res://followmyroots.gd" id="11_42l1d"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_gyfs4"]
 
@@ -24,19 +28,17 @@ ssao_enabled = true
 sdfgi_enabled = true
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5x1h"]
-albedo_texture = ExtResource("1_0f027")
-
-[sub_resource type="QuadMesh" id="QuadMesh_8mm7a"]
-material = SubResource("StandardMaterial3D_d5x1h")
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_gyfs4"]
+radius = 5.97
 
 [sub_resource type="TextMesh" id="TextMesh_gyfs4"]
-text = "change level to 2"
+text = "level 2"
 
 [sub_resource type="TextMesh" id="TextMesh_d5x1h"]
-text = "change level to 3"
+text = "level 4"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_671wp"]
+size = Vector3(2000, 5, 3000)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vaa0i"]
 resource_name = "Material.001"
@@ -78,20 +80,48 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6ffq2")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_mo76n"]
+size = Vector3(1, 1, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwutr"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_qwutr"]
+material = SubResource("StandardMaterial3D_qwutr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_42l1d"]
+albedo_texture = ExtResource("7_mo76n")
+
+[sub_resource type="QuadMesh" id="QuadMesh_2jcla"]
+material = SubResource("StandardMaterial3D_42l1d")
+size = Vector2(6, 6)
+
 [sub_resource type="BoxMesh" id="BoxMesh_wr18j"]
 size = Vector3(70, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qwutr"]
 size = Vector3(70, 1, 1)
 
+[sub_resource type="TextMesh" id="TextMesh_2jcla"]
+text = "Follow my roots"
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_42l1d"]
+bottom_radius = 0.0
+height = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2jcla"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 1.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5x1h"]
+albedo_texture = ExtResource("1_0f027")
+
+[sub_resource type="QuadMesh" id="QuadMesh_8mm7a"]
+material = SubResource("StandardMaterial3D_d5x1h")
+
 [node name="main scene" type="Node3D"]
 script = ExtResource("1_gyfs4")
-
-[node name="test" parent="." instance=ExtResource("4_d5x1h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -74.0949, 0)
-
-[node name="player" parent="test" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.590564, 76.6818, 1.92168)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gyfs4")
@@ -101,6 +131,318 @@ transform = Transform3D(0.843991, 0.526498, 0.10237, 0.410253, -0.756636, 0.5091
 light_color = Color(0.366567, 0.232707, 0.179101, 1)
 light_energy = 0.01
 shadow_enabled = true
+
+[node name="level switch" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.126, 0, 16.1791)
+
+[node name="level1" type="Node3D" parent="level switch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.8611, 1.23748, -12.8003)
+
+[node name="level2" type="Area3D" parent="level switch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.1221, 7.31772, -23.2284)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level switch/level2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50826, -6.826, -1.84345)
+shape = SubResource("SphereShape3D_gyfs4")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="level switch/level2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -2.78141, 0)
+light_color = Color(1, 0.294118, 0, 1)
+light_energy = 16.0
+spot_attenuation = 2.0
+spot_angle = 10.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level switch/level2"]
+transform = Transform3D(1.44917, 0, -0.130125, 0, 1.455, 0, 0.130125, 0, 1.44917, 0, -5.58874, 0)
+mesh = SubResource("TextMesh_gyfs4")
+
+[node name="level3" type="Area3D" parent="level switch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.6216, -4.83242, -135.185)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level switch/level3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.8259, 0)
+shape = SubResource("SphereShape3D_gyfs4")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="level switch/level3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -2.78141, 0)
+light_color = Color(0.885652, 0.286842, 0.821472, 1)
+light_energy = 16.0
+spot_attenuation = 2.0
+spot_angle = 10.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level switch/level3"]
+transform = Transform3D(0.990076, 0, 1.0662, 0, 1.455, 0, -1.0662, 0, 0.990076, 0, -5.58874, 0)
+mesh = SubResource("TextMesh_d5x1h")
+
+[node name="level4" type="Area3D" parent="level switch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -105.545, -4.832, -204.646)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level switch/level4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.8259, 0)
+shape = SubResource("SphereShape3D_gyfs4")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="level switch/level4"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -2.78141, 0)
+light_color = Color(0.237695, 0.606246, 0.890895, 1)
+light_energy = 16.0
+spot_attenuation = 2.0
+spot_angle = 10.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level switch/level4"]
+transform = Transform3D(0.990076, 0, 1.0662, 0, 1.455, 0, -1.0662, 0, 0.990076, 0, -5.58874, 0)
+mesh = SubResource("TextMesh_d5x1h")
+
+[node name="level5" type="Area3D" parent="level switch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -338, 5.216, -333)
+
+[node name="death barrier" type="Area3D" parent="level switch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -34.2389, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level switch/death barrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.8013, 0)
+shape = SubResource("BoxShape3D_671wp")
+
+[node name="test (player spawn)" parent="." instance=ExtResource("4_d5x1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -74.0949, -160.445)
+
+[node name="player" parent="test (player spawn)" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.590564, 76.6818, 163.293)
+
+[node name="doors_and_roots_level1" parent="." instance=ExtResource("8_66tet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.636768)
+script = ExtResource("8_wr18j")
+
+[node name="Cube" parent="doors_and_roots_level1" index="0"]
+transform = Transform3D(78.614, 0, 0, 0, 3.655, 0, 0, 0, 5.599, 0, -3.76192, 0)
+
+[node name="Cube_004" parent="doors_and_roots_level1" index="4"]
+transform = Transform3D(0, 0.496596, 0, 0, 0, -4.44245, -5.38245, 0, 0, 6.24751, 0.991204, 7.17415)
+
+[node name="Cylinder" parent="doors_and_roots_level1" index="6"]
+transform = Transform3D(0.0387276, 0.998333, 0.0427909, -0.998973, 0.0376728, 0.0251863, 0.0235323, -0.043723, 0.998767, -5.02645, -0.437068, -0.134194)
+
+[node name="CollisionShape3D" parent="doors_and_roots_level1/Cylinder/StaticBody3D" index="0"]
+transform = Transform3D(1, -4.88944e-09, 1.86265e-09, -4.42378e-09, 1, 0, 3.72529e-09, 0, 1, -0.00303215, 0.0252895, -0.00302869)
+
+[node name="Cylinder2" type="MeshInstance3D" parent="doors_and_roots_level1"]
+transform = Transform3D(-0.994801, 0.0744021, 0.0695397, -0.0674985, 0.0296179, -0.997281, -0.0762593, -0.996789, -0.0244414, 5.98824, 0.101541, -5.23541)
+mesh = SubResource("ArrayMesh_543vs")
+skeleton = NodePath("")
+
+[node name="let the player explore" type="Timer" parent="doors_and_roots_level1"]
+wait_time = 2.0
+one_shot = true
+
+[node name="fences" type="Node3D" parent="doors_and_roots_level1"]
+transform = Transform3D(1.40364, 0, -1.01981, 0, 1.735, 0, 1.01981, 0, 1.40364, 47.1388, -1.72852, -1.5381)
+
+[node name="fence" parent="doors_and_roots_level1/fences" instance=ExtResource("9_qwutr")]
+
+[node name="fence2" parent="doors_and_roots_level1/fences" instance=ExtResource("9_qwutr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2617, 0, -2.36977)
+
+[node name="fence3" parent="doors_and_roots_level1/fences" instance=ExtResource("9_qwutr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.67994, 0, -4.85326)
+
+[node name="fence4" parent="doors_and_roots_level1/fences" instance=ExtResource("9_qwutr")]
+transform = Transform3D(0.453866, 0, 0.89107, 0, 1, 0, -0.89107, 0, 0.453866, 8.38708, 0, -10.3122)
+
+[node name="fence5" parent="doors_and_roots_level1/fences" instance=ExtResource("9_qwutr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2849, 0, 16.8692)
+
+[node name="fence6" parent="doors_and_roots_level1/fences" instance=ExtResource("9_qwutr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1052, 0, 14.559)
+
+[node name="fence7" parent="doors_and_roots_level1/fences" instance=ExtResource("9_qwutr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.69409, 0, 12.0807)
+
+[node name="fence8" parent="doors_and_roots_level1/fences" instance=ExtResource("9_qwutr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.52151, 0, 9.77567)
+
+[node name="fence9" parent="doors_and_roots_level1/fences" instance=ExtResource("9_qwutr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.271215, 0, 7.41419)
+
+[node name="fence10" parent="doors_and_roots_level1/fences" instance=ExtResource("9_qwutr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0033, 0, 5.03512)
+
+[node name="fence11" parent="doors_and_roots_level1/fences" instance=ExtResource("9_qwutr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.26061, 0, 2.66854)
+
+[node name="fence12" parent="doors_and_roots_level1/fences" instance=ExtResource("9_qwutr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.375, 0, 0.405806)
+
+[node name="fence13" parent="doors_and_roots_level1/fences" instance=ExtResource("9_qwutr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5204, 0, -1.87947)
+
+[node name="fence14" parent="doors_and_roots_level1/fences" instance=ExtResource("9_qwutr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6574, 0, -4.15864)
+
+[node name="fence15" parent="doors_and_roots_level1/fences" instance=ExtResource("9_qwutr")]
+transform = Transform3D(0.355319, 0, 0.934745, 0, 1, 0, -0.934745, 0, 0.355319, 17.2875, 0, -9.74537)
+
+[node name="fence16" parent="doors_and_roots_level1/fences" instance=ExtResource("9_qwutr")]
+transform = Transform3D(0.501118, 0, -0.865379, 0, 1, 0, 0.865379, 0, 0.501118, 12.5906, 0, -9.09815)
+
+[node name="redcarpetpost" parent="doors_and_roots_level1/fences" instance=ExtResource("6_671wp")]
+transform = Transform3D(0.466292, 0, 0.338783, 0, 0.576369, 0, -0.338783, 0, 0.466292, 9.51698, 0.996268, -15.716)
+
+[node name="redcarpetpost2" parent="doors_and_roots_level1/fences" instance=ExtResource("6_671wp")]
+transform = Transform3D(0.466292, 0, 0.338783, 0, 0.576369, 0, -0.338783, 0, 0.466292, 5.28776, 0.996267, -21.537)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="doors_and_roots_level1/fences/redcarpetpost2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56343, 2.38502, 6.56105)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="doors_and_roots_level1/fences/redcarpetpost2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.946877, -0.318417, 0)
+shape = SubResource("BoxShape3D_mo76n")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="doors_and_roots_level1/fences/redcarpetpost2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32191, 1.84808, 18.0865)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="doors_and_roots_level1/fences/redcarpetpost2/StaticBody3D2"]
+shape = SubResource("BoxShape3D_mo76n")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="doors_and_roots_level1/fences/redcarpetpost2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9234, 2.38502, 6.56105)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="doors_and_roots_level1/fences/redcarpetpost2/StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.946877, -0.318417, 0)
+shape = SubResource("BoxShape3D_mo76n")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="doors_and_roots_level1/fences/redcarpetpost2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56343, 2.38502, -5.72496)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="doors_and_roots_level1/fences/redcarpetpost2/StaticBody3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.946877, -0.318417, 0)
+shape = SubResource("BoxShape3D_mo76n")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="doors_and_roots_level1/fences/redcarpetpost2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0213, 2.38502, -4.45828)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="doors_and_roots_level1/fences/redcarpetpost2/StaticBody3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.946877, -0.318417, 0)
+shape = SubResource("BoxShape3D_mo76n")
+
+[node name="redcarpetpost3" parent="doors_and_roots_level1/fences" instance=ExtResource("6_671wp")]
+transform = Transform3D(0.466292, 0, 0.338783, 0, 0.576369, 0, -0.338783, 0, 0.466292, 5.23344, 0.996267, -13.7815)
+
+[node name="redcarpetpost4" parent="doors_and_roots_level1/fences" instance=ExtResource("6_671wp")]
+transform = Transform3D(0.466292, 0, 0.338783, 0, 0.576369, 0, -0.338783, 0, 0.466292, 1.99379, 0.996267, -18.2885)
+
+[node name="red carpet" type="MeshInstance3D" parent="doors_and_roots_level1"]
+transform = Transform3D(3, 0, 0, 0, -1.31134e-06, 1, 0, -30, -4.37114e-08, 69.8088, -0.0348248, -18.2135)
+mesh = SubResource("QuadMesh_qwutr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="doors_and_roots_level1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.901, 3.36585, -3.95166)
+mesh = SubResource("QuadMesh_2jcla")
+
+[node name="walk_and_enemy_level2" parent="." instance=ExtResource("9_7ycvg")]
+transform = Transform3D(-0.688354, 0, 0.725374, 0, 1, 0, -0.725374, 0, -0.688354, 15.0716, -15.1761, -96.454)
+
+[node name="pig_enemy" parent="walk_and_enemy_level2" instance=ExtResource("5_8mm7a")]
+transform = Transform3D(0.4, 0, -5.96046e-08, 0, 0.4, 0, 5.96046e-08, 0, 0.4, -62.2509, 16.705, -4.40804)
+
+[node name="ramp to the tree" type="StaticBody3D" parent="walk_and_enemy_level2"]
+transform = Transform3D(0.786159, 0, -0.618025, 0, 1, 0, 0.618025, 0, 0.786159, 93.3998, 2.04793, -33.6644)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="walk_and_enemy_level2/ramp to the tree"]
+transform = Transform3D(0.99945, -0.0331552, 0, 0.0331552, 0.99945, 0, 7.45058e-09, 0, 1, 13.428, -0.791, 1.252)
+mesh = SubResource("BoxMesh_wr18j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walk_and_enemy_level2/ramp to the tree"]
+transform = Transform3D(0.999451, -0.0331552, 0, 0.0331552, 0.99945, 0, 0, 0, 1, 10.7481, -0.791352, 1.00236)
+shape = SubResource("BoxShape3D_qwutr")
+
+[node name="fence" parent="walk_and_enemy_level2" instance=ExtResource("9_qwutr")]
+transform = Transform3D(1.41666, 0, -1.01887, 0, 1.745, 0, 1.01887, 0, 1.41666, 71.7121, -0.709688, -53.1453)
+
+[node name="fence" parent="walk_and_enemy_level2/fence" instance=ExtResource("9_qwutr")]
+transform = Transform3D(0.121558, 0, -0.992585, 0, 0.999999, 0, 0.992585, 0, 0.121558, 0.163681, 0, 1.10464)
+
+[node name="fence2" parent="walk_and_enemy_level2/fence" instance=ExtResource("9_qwutr")]
+transform = Transform3D(-0.104407, 0, -0.994534, 0, 0.999998, 0, 0.994534, 0, -0.104407, 5.608, 0, 7.17101)
+
+[node name="fence3" parent="walk_and_enemy_level2/fence" instance=ExtResource("9_qwutr")]
+transform = Transform3D(-0.104407, 0, -0.994533, 0, 0.999997, 0, 0.994533, 0, -0.104407, 8.03675, 0, 10.6388)
+
+[node name="ramp to the tree2" type="StaticBody3D" parent="walk_and_enemy_level2"]
+transform = Transform3D(0.786159, 0, -0.618025, 0, 1, 0, 0.618025, 0, 0.786159, 94.6145, 2.04793, -34.9444)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="walk_and_enemy_level2/ramp to the tree2"]
+transform = Transform3D(0.99945, -0.0331552, 0, 0.0331552, 0.99945, 0, 7.45058e-09, 0, 1, 13.428, -0.791, 1.252)
+mesh = SubResource("BoxMesh_wr18j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walk_and_enemy_level2/ramp to the tree2"]
+transform = Transform3D(0.999451, -0.0331552, 0, 0.0331552, 0.99945, 0, 0, 0, 1, 10.7481, -0.791352, 1.00236)
+shape = SubResource("BoxShape3D_qwutr")
+
+[node name="big empty forest" parent="." instance=ExtResource("7_nfk4m")]
+transform = Transform3D(2.74276, 0, -1.21543, 0, 3, 0, 1.21543, 0, 2.74276, -41.3716, -15.5594, -618.094)
+
+[node name="Cube_004" parent="big empty forest" index="4"]
+transform = Transform3D(5.92424, 0, 1.19209e-07, 0, 39.5854, 0, 0, 0, 3.57425, -153.596, 0, -178.674)
+visible = false
+
+[node name="Cube_005" parent="big empty forest" index="8"]
+visible = false
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="big empty forest"]
+transform = Transform3D(-0.219266, 0.676708, 0.702843, 0.0136881, -0.718169, 0.695735, 0.975569, 0.162171, 0.148207, 126.476, 136.451, 94.3907)
+visible = false
+light_energy = 16.0
+light_size = 1.0
+shadow_enabled = true
+spot_range = 657.768
+spot_attenuation = 0.2
+spot_angle = 23.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="big empty forest"]
+transform = Transform3D(0.332653, -0.0175505, 0.0120331, -0.00879554, 0.0582356, 0.328089, -0.0193767, -0.327737, 0.0576537, 46.4701, 176.569, 106.66)
+visible = false
+light_energy = 16.0
+light_size = 1.0
+shadow_enabled = true
+spot_range = 657.768
+spot_attenuation = 0.2
+spot_angle = 23.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="big empty forest"]
+transform = Transform3D(0.333255, 0.000177376, 0.00723497, -0.00723497, 0.0163265, 0.332855, -0.000177249, -0.332933, 0.0163265, 17.0415, 110.587, 128.56)
+visible = false
+light_energy = 16.0
+light_size = 1.0
+shadow_enabled = true
+spot_range = 657.768
+spot_attenuation = 0.2
+spot_angle = 23.0
+
+[node name="Timer" type="Timer" parent="big empty forest/SpotLight3D"]
+one_shot = true
+
+[node name="followmyroots" type="Node3D" parent="big empty forest"]
+transform = Transform3D(0.958333, 0, 0.285655, 0, 1, 0, -0.285655, 0, 0.958333, 29.9083, 0, 101.369)
+script = ExtResource("11_42l1d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="big empty forest/followmyroots"]
+transform = Transform3D(-14.335, -2.16452e-06, -1.69825e-07, 2.16452e-06, -14.335, 1.48466e-14, -1.69825e-07, -1.07963e-14, 14.335, 0, -26.9469, 0)
+mesh = SubResource("TextMesh_2jcla")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="big empty forest/followmyroots"]
+transform = Transform3D(0.254068, -0.962452, 0.0955841, 0.962452, 0.24182, -0.123329, 0.0955841, 0.123329, 0.987752, -11.7695, -25.5351, 1.50815)
+mesh = SubResource("CylinderMesh_42l1d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="big empty forest/followmyroots/MeshInstance3D2"]
+transform = Transform3D(1, -8.71322e-09, 0, -4.82009e-09, 1, 3.91136e-11, 1.49012e-08, 3.9101e-10, 1, -0.0707703, 1.02293, 0.00907135)
+mesh = SubResource("CylinderMesh_2jcla")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="big empty forest/followmyroots"]
+transform = Transform3D(-0.138143, -0.979616, 0.145842, 0.979616, -0.156831, -0.125528, 0.145842, 0.125528, 0.981312, 11.9832, -25.5351, -0.237175)
+mesh = SubResource("CylinderMesh_42l1d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="big empty forest/followmyroots/MeshInstance3D3"]
+transform = Transform3D(1, -8.71322e-09, 0, -4.82009e-09, 1, 3.91136e-11, 1.49012e-08, 3.9101e-10, 1, -0.0707703, 1.02293, 0.00907135)
+mesh = SubResource("CylinderMesh_2jcla")
 
 [node name="jamieworld" parent="." instance=ExtResource("4_8mm7a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -318.024, -13.2234, -318.175)
@@ -136,132 +478,19 @@ light_energy = 0.1
 omni_range = 3.843
 omni_attenuation = 8.667
 
-[node name="debug level switch" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.126, 0, 8.63213)
-visible = false
-
-[node name="level2" type="Area3D" parent="debug level switch"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.97248, 6.49429, 4.38167)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="debug level switch/level2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.8259, 0)
-shape = SubResource("SphereShape3D_gyfs4")
-
-[node name="SpotLight3D" type="SpotLight3D" parent="debug level switch/level2"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -2.78141, 0)
-light_color = Color(1, 0.294118, 0, 1)
-light_energy = 16.0
-spot_attenuation = 2.0
-spot_angle = 10.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="debug level switch/level2"]
-transform = Transform3D(-0.788548, 0, -0.614974, 0, 1, 0, 0.614974, 0, -0.788548, 0, -5.58874, 0)
-mesh = SubResource("TextMesh_gyfs4")
-
-[node name="level3" type="Area3D" parent="debug level switch"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.85931, 6.49429, 4.38167)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="debug level switch/level3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.8259, 0)
-shape = SubResource("SphereShape3D_gyfs4")
-
-[node name="SpotLight3D" type="SpotLight3D" parent="debug level switch/level3"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -2.78141, 0)
-light_color = Color(0.885652, 0.286842, 0.821472, 1)
-light_energy = 16.0
-spot_attenuation = 2.0
-spot_angle = 10.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="debug level switch/level3"]
-transform = Transform3D(-0.788548, 0, -0.614974, 0, 1, 0, 0.614974, 0, -0.788548, 0, -5.58874, 0)
-mesh = SubResource("TextMesh_d5x1h")
-
-[node name="doors_and_roots_level1" parent="." instance=ExtResource("8_66tet")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.636768)
-script = ExtResource("8_wr18j")
-
-[node name="Cube" parent="doors_and_roots_level1" index="0"]
-transform = Transform3D(78.614, 0, 0, 0, 3.655, 0, 0, 0, 5.599, 0, -3.76192, 0)
-
-[node name="Cube_004" parent="doors_and_roots_level1" index="4"]
-transform = Transform3D(0, 0.496596, 0, 0, 0, -4.44245, -5.38245, 0, 0, 6.24751, 0.991204, 7.17415)
-
-[node name="Cylinder" parent="doors_and_roots_level1" index="6"]
-transform = Transform3D(0.0387276, 0.998333, 0.0427909, -0.998973, 0.0376728, 0.0251863, 0.0235323, -0.043723, 0.998767, -5.02645, -0.437068, -0.134194)
-
-[node name="CollisionShape3D" parent="doors_and_roots_level1/Cylinder/StaticBody3D" index="0"]
-transform = Transform3D(1, -4.88944e-09, 1.86265e-09, -4.42378e-09, 1, 0, 3.72529e-09, 0, 1, -0.00303215, 0.0252895, -0.00302869)
-
-[node name="Cylinder2" type="MeshInstance3D" parent="doors_and_roots_level1"]
-transform = Transform3D(-0.994801, 0.0744021, 0.0695397, -0.0674985, 0.0296179, -0.997281, -0.0762593, -0.996789, -0.0244414, 5.98824, 0.101541, -5.23541)
-mesh = SubResource("ArrayMesh_543vs")
-skeleton = NodePath("")
-
-[node name="let the player explore" type="Timer" parent="doors_and_roots_level1"]
-wait_time = 2.0
-one_shot = true
-
-[node name="walk_and_enemy_level2" parent="." instance=ExtResource("9_7ycvg")]
-transform = Transform3D(-0.688354, 0, 0.725374, 0, 1, 0, -0.725374, 0, -0.688354, 15.0716, -15.1761, -96.454)
-
-[node name="pig_enemy" parent="walk_and_enemy_level2" instance=ExtResource("5_8mm7a")]
-transform = Transform3D(0.4, 0, -5.96046e-08, 0, 0.4, 0, 5.96046e-08, 0, 0.4, -62.2509, 16.705, -4.40804)
-
-[node name="ramp to the tree" type="StaticBody3D" parent="walk_and_enemy_level2"]
-transform = Transform3D(0.786159, 0, -0.618025, 0, 1, 0, 0.618025, 0, 0.786159, 93.3998, 2.04793, -33.6644)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="walk_and_enemy_level2/ramp to the tree"]
-transform = Transform3D(0.99945, -0.0331552, 0, 0.0331552, 0.99945, 0, 7.45058e-09, 0, 1, 13.428, -0.791, 1.252)
-mesh = SubResource("BoxMesh_wr18j")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="walk_and_enemy_level2/ramp to the tree"]
-transform = Transform3D(0.999451, -0.0331552, 0, 0.0331552, 0.99945, 0, 0, 0, 1, 10.7481, -0.791352, 1.00236)
-shape = SubResource("BoxShape3D_qwutr")
-
-[node name="big empty forest" parent="." instance=ExtResource("7_nfk4m")]
-transform = Transform3D(2.74276, 0, -1.21543, 0, 3, 0, 1.21543, 0, 2.74276, -41.3716, -15.5594, -618.094)
-
-[node name="Cube_004" parent="big empty forest" index="4"]
-transform = Transform3D(5.92424, 0, 1.19209e-07, 0, 39.5854, 0, 0, 0, 3.57425, -153.596, 0, -178.674)
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="big empty forest"]
-transform = Transform3D(-0.0692195, 0.27121, 0.18101, -0.0410303, -0.190818, 0.270215, 0.323475, 0.0338317, 0.0730084, 118.124, 136.451, 98.0917)
-visible = false
-light_energy = 16.0
-light_size = 1.0
-shadow_enabled = true
-spot_range = 657.768
-spot_attenuation = 0.2
-spot_angle = 23.0
-
-[node name="SpotLight3D2" type="SpotLight3D" parent="big empty forest"]
-transform = Transform3D(0.318339, -0.00675835, 0.0986191, -0.0979874, 0.0222725, 0.317826, -0.0130334, -0.33252, 0.0192839, 46.4701, 149.33, 106.66)
-visible = false
-light_energy = 16.0
-light_size = 1.0
-shadow_enabled = true
-spot_range = 657.768
-spot_attenuation = 0.2
-spot_angle = 23.0
-
-[node name="SpotLight3D" type="SpotLight3D" parent="big empty forest"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 28.4641, 110.587, 85.7468)
-visible = false
-light_energy = 16.0
-light_size = 1.0
-shadow_enabled = true
-spot_range = 657.768
-spot_attenuation = 0.2
-spot_angle = 23.0
-
-[connection signal="body_entered" from="debug level switch/level2" to="." method="_on_level_2_body_entered"]
-[connection signal="body_entered" from="debug level switch/level3" to="." method="_on_level_3_body_entered"]
+[connection signal="body_entered" from="level switch/level2" to="." method="_on_level_2_body_entered"]
+[connection signal="body_entered" from="level switch/level3" to="." method="_on_level_3_body_entered"]
+[connection signal="body_entered" from="level switch/level4" to="." method="_on_level_3_body_entered"]
+[connection signal="body_entered" from="level switch/level4" to="." method="_on_level_4_body_entered"]
+[connection signal="body_entered" from="level switch/death barrier" to="." method="_on_death_barrier_body_entered"]
+[connection signal="death" from="test (player spawn)/player" to="." method="_on_death_barrier_body_entered"]
 [connection signal="timeout" from="doors_and_roots_level1/let the player explore" to="doors_and_roots_level1" method="_on_let_the_player_explore_timeout"]
-[connection signal="body_entered" from="big empty forest/Cube_005/Area3D" to="test/player" method="_on_shiny_cube_collected"]
+[connection signal="body_entered" from="big empty forest/Cube_005/Area3D" to="test (player spawn)/player" method="_on_shiny_cube_collected"]
 [connection signal="body_entered" from="big empty forest/Cube_005/Area3D" to="big empty forest/Cube_005" method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="big empty forest/SpotLight3D/Timer" to="." method="_on_level2_spotlight_timer_timeout"]
 
-[editable path="test"]
-[editable path="jamieworld/pig_enemy"]
+[editable path="test (player spawn)"]
 [editable path="doors_and_roots_level1"]
 [editable path="walk_and_enemy_level2"]
 [editable path="big empty forest"]
+[editable path="jamieworld/pig_enemy"]

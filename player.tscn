@@ -1,71 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://dvijnui60l6ve"]
 
 [ext_resource type="PackedScene" uid="uid://usm4tltpc7y8" path="res://flashlight.tscn" id="1_4flbx"]
-
-[sub_resource type="GDScript" id="GDScript_sh265"]
-script/source = "extends CharacterBody3D
-
-var gravity = ProjectSettings.get_setting(\"physics/3d/default_gravity\")
-#var gravity = 0
-var speed = 4.0  # movement speed
-var jump_speed = 4.9  # determines jump height
-var mouse_sensitivity = 0.002  # turning speed
-var hitpoints = 3
-
-func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
-func _input(event):
-	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		rotate_y(-event.relative.x * mouse_sensitivity)
-		$Camera3D.rotate_z(-event.relative.y * mouse_sensitivity)
-		$Camera3D.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(90), deg_to_rad(90))
-		
-	if event.is_action_pressed(\"exit game\"):
-		get_tree().quit()
-	if Input.is_action_just_pressed(\"jump\"):
-		if is_on_floor():
-			velocity.y = jump_speed
-	if Input.is_action_just_pressed(\"toggle light\"):
-		if($Camera3D/flashlight/SpotLight3D.visible): $Camera3D/flashlight/SpotLight3D.visible = false
-		else: $Camera3D/flashlight/SpotLight3D.visible = true
-	if Input.is_action_just_pressed(\"interact\"):
-		pass
-		
-func get_input():
-	var input = Input.get_vector(\"move_back\",\"move_forward\",\"strafe_left\", \"strafe_right\")
-	return input
-
-func _physics_process(delta):
-	if(Input.is_action_pressed(\"run\")):
-		speed = 32
-	else:
-		speed=4
-	velocity.y += -gravity * delta
-	var input = get_input()
-	var movement_dir = transform.basis * Vector3(input.x, 0, input.y)
-	velocity.x = movement_dir.x * speed
-	velocity.z = movement_dir.z * speed
-	move_and_slide()
-
-
-
-func add_cube():
-	jump_speed = 20
-func take_damage(enemy):
-	hitpoints = hitpoints - enemy.damage
-	position += (get_global_position() - enemy.get_global_position())*0.5
-	print(\"took \",enemy.damage,\" damage. \",hitpoints,\" life left\")
-	var hpprogresstween = self.create_tween()
-	hpprogresstween.tween_property($ProgressBar,\"value\",hitpoints,0.2)
-"
+[ext_resource type="Script" uid="uid://bpv6kwwt6yhb" path="res://player.gd" id="1_onrkg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4flbx"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
 
 [node name="player" type="CharacterBody3D" groups=["player"]]
-script = SubResource("GDScript_sh265")
+script = ExtResource("1_onrkg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_4flbx")

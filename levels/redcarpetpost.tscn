@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh1nfkmt1g6ak"]
+
+[ext_resource type="PackedScene" uid="uid://dlw1j18dibydq" path="res://levels/redcarpetpost.glb" id="1_alcmb"]
+
+[node name="redcarpetpost" instance=ExtResource("1_alcmb")]
