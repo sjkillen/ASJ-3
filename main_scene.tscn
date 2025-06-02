@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://dffp6u0g2ll7o"]
+[gd_scene load_steps=49 format=4 uid="uid://dffp6u0g2ll7o"]
 
 [ext_resource type="Texture2D" uid="uid://dafedeljkbqvi" path="res://beware sign.png" id="1_0f027"]
 [ext_resource type="Script" uid="uid://m4lnmvc7x4ut" path="res://main_scene.gd" id="1_gyfs4"]
@@ -14,11 +14,14 @@
 [ext_resource type="PackedScene" uid="uid://cdo7qtge8yqe2" path="res://levels/walk_and_enemy_level_2.tscn" id="9_7ycvg"]
 [ext_resource type="PackedScene" uid="uid://6awdsxf5krd2" path="res://levels/fence.tscn" id="9_qwutr"]
 [ext_resource type="Script" uid="uid://d3g55h8ms5do3" path="res://followmyroots.gd" id="11_42l1d"]
+[ext_resource type="Material" uid="uid://bkhpf5qo3v0rq" path="res://transparent arrow material.tres" id="11_m35m6"]
+[ext_resource type="PackedScene" uid="uid://bapoa4t7h3on7" path="res://levels/house.tscn" id="15_2jcla"]
+[ext_resource type="Texture2D" uid="uid://xianuhfa6b6m" path="res://mouth.png" id="17_u0ygc"]
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_gyfs4"]
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_42l1d"]
 
 [sub_resource type="Sky" id="Sky_d5x1h"]
-sky_material = SubResource("PhysicalSkyMaterial_gyfs4")
+sky_material = SubResource("PhysicalSkyMaterial_42l1d")
 
 [sub_resource type="Environment" id="Environment_gyfs4"]
 background_mode = 2
@@ -35,7 +38,13 @@ radius = 5.97
 text = "level 2"
 
 [sub_resource type="TextMesh" id="TextMesh_d5x1h"]
+text = "im so thirsty"
+
+[sub_resource type="TextMesh" id="TextMesh_m35m6"]
 text = "level 4"
+
+[sub_resource type="TextMesh" id="TextMesh_7th4q"]
+text = "level 5"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_671wp"]
 size = Vector3(2000, 5, 3000)
@@ -106,19 +115,48 @@ size = Vector3(70, 1, 1)
 text = "Follow my roots"
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_42l1d"]
+material = ExtResource("11_m35m6")
 bottom_radius = 0.0
 height = 1.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_2jcla"]
+material = ExtResource("11_m35m6")
 top_radius = 0.2
 bottom_radius = 0.2
 height = 1.6
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2jcla"]
+size = Vector3(52.985, 3.1, 20)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m35m6"]
+radius = 0.94
+height = 20.705
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jcla"]
+albedo_color = Color(0.400635, 0.246512, 2.40654e-07, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_42l1d"]
+material = SubResource("StandardMaterial3D_2jcla")
+inner_radius = 0.192
+outer_radius = 3.425
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u0ygc"]
+radius = 0.645
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5x1h"]
 albedo_texture = ExtResource("1_0f027")
 
 [sub_resource type="QuadMesh" id="QuadMesh_8mm7a"]
 material = SubResource("StandardMaterial3D_d5x1h")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m35m6"]
+albedo_color = Color(1, 0.494118, 1, 1)
+metallic = 1.0
+
+[sub_resource type="TextMesh" id="TextMesh_u0ygc"]
+material = SubResource("StandardMaterial3D_m35m6")
+text = "lets party"
+font_size = 30
 
 [node name="main scene" type="Node3D"]
 script = ExtResource("1_gyfs4")
@@ -189,11 +227,29 @@ spot_attenuation = 2.0
 spot_angle = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="level switch/level4"]
-transform = Transform3D(0.990076, 0, 1.0662, 0, 1.455, 0, -1.0662, 0, 0.990076, 0, -5.58874, 0)
-mesh = SubResource("TextMesh_d5x1h")
+transform = Transform3D(1.96218, 0, -0.105198, 0, 1.965, 0, 0.105198, 0, 1.96218, 0, -5.58874, 0)
+mesh = SubResource("TextMesh_m35m6")
 
 [node name="level5" type="Area3D" parent="level switch"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -338, 5.216, -333)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -316.513, -4.90368, -342.37)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level switch/level5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.8259, 0)
+shape = SubResource("SphereShape3D_gyfs4")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="level switch/level5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -2.78141, 0)
+light_color = Color(0.237695, 0.606246, 0.890895, 1)
+light_energy = 16.0
+spot_attenuation = 2.0
+spot_angle = 10.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level switch/level5"]
+transform = Transform3D(0.93842, 0, 1.86748, 0, 2.09, 0, -1.86748, 0, 0.93842, 0, -5.58874, 0)
+mesh = SubResource("TextMesh_7th4q")
+
+[node name="Timer" type="Timer" parent="level switch/level5"]
+one_shot = true
 
 [node name="death barrier" type="Area3D" parent="level switch"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -34.2389, 0)
@@ -340,9 +396,6 @@ mesh = SubResource("QuadMesh_2jcla")
 [node name="walk_and_enemy_level2" parent="." instance=ExtResource("9_7ycvg")]
 transform = Transform3D(-0.688354, 0, 0.725374, 0, 1, 0, -0.725374, 0, -0.688354, 15.0716, -15.1761, -96.454)
 
-[node name="pig_enemy" parent="walk_and_enemy_level2" instance=ExtResource("5_8mm7a")]
-transform = Transform3D(0.4, 0, -5.96046e-08, 0, 0.4, 0, 5.96046e-08, 0, 0.4, -62.2509, 16.705, -4.40804)
-
 [node name="ramp to the tree" type="StaticBody3D" parent="walk_and_enemy_level2"]
 transform = Transform3D(0.786159, 0, -0.618025, 0, 1, 0, 0.618025, 0, 0.786159, 93.3998, 2.04793, -33.6644)
 
@@ -421,7 +474,8 @@ spot_angle = 23.0
 one_shot = true
 
 [node name="followmyroots" type="Node3D" parent="big empty forest"]
-transform = Transform3D(0.958333, 0, 0.285655, 0, 1, 0, -0.285655, 0, 0.958333, 29.9083, 0, 101.369)
+transform = Transform3D(-0.296196, -0.905467, 0.303968, 0.941199, -0.330853, -0.0684204, 0.162521, 0.265828, 0.950223, 20.615, 0, 108.006)
+visible = false
 script = ExtResource("11_42l1d")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="big empty forest/followmyroots"]
@@ -444,22 +498,74 @@ mesh = SubResource("CylinderMesh_42l1d")
 transform = Transform3D(1, -8.71322e-09, 0, -4.82009e-09, 1, 3.91136e-11, 1.49012e-08, 3.9101e-10, 1, -0.0707703, 1.02293, 0.00907135)
 mesh = SubResource("CylinderMesh_2jcla")
 
+[node name="followmyroots roots" type="Node3D" parent="big empty forest"]
+transform = Transform3D(0.852409, -0.403079, -0.333055, 0.403078, 0.100831, 0.909594, -0.333056, -0.909594, 0.248422, 39.9703, -2.68177, 89.9229)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="big empty forest/followmyroots roots"]
+transform = Transform3D(0.913222, 0.0340593, 0.406038, -0.0411248, 0.999116, 0.00868612, -0.405383, -0.0246306, 0.913815, -27.174, 3.021, 9.642)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="big empty forest/followmyroots roots/StaticBody3D"]
+shape = SubResource("BoxShape3D_2jcla")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="big empty forest/followmyroots roots/StaticBody3D"]
+transform = Transform3D(1, 0, 4.65661e-10, -1.11759e-08, 1, -1.49012e-08, 2.09548e-09, 0, 1, -27.4839, -0.99942, 1.39294)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="big empty forest/followmyroots roots/StaticBody3D/StaticBody3D"]
+transform = Transform3D(0.161722, 0.986235, 0.034437, -0.982834, 0.157828, 0.0955408, 0.0887906, -0.0492969, 0.99483, 4.3416, 1.03656, 0.776505)
+shape = SubResource("CapsuleShape3D_m35m6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="big empty forest/followmyroots roots"]
+transform = Transform3D(9.17634, -0.094258, 0.878515, 0.994097, 0.995151, 0.031522, -4.42286, 0.0281114, 1.82979, -27.1795, 6.5947, 9.62889)
+mesh = SubResource("TorusMesh_42l1d")
+
+[node name="level6" type="Area3D" parent="big empty forest/followmyroots roots"]
+transform = Transform3D(0.861857, 0.400028, -0.311732, -0.400029, 0.158399, -0.90271, -0.311731, 0.90271, 0.29654, -54.1163, 5.53781, 31.5988)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="big empty forest/followmyroots roots/level6"]
+transform = Transform3D(1, 0, -3.8743e-07, 0, 1, -1.11759e-08, 0, 3.72529e-09, 1, -0.0249786, -6.29429, -0.056488)
+shape = SubResource("SphereShape3D_u0ygc")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="big empty forest/followmyroots roots/level6"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -2.78141, 0)
+light_color = Color(1, 0, 0, 1)
+light_energy = 16.0
+light_size = 0.03
+spot_range = 14.905
+spot_attenuation = 2.0
+spot_angle = 10.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="big empty forest/followmyroots roots/level6"]
+transform = Transform3D(-1.26758, 0.0195428, -0.714065, -0.0616794, 1.44603, 0.149067, 0.711664, 0.160135, -1.25894, 0, -5.58874, 0)
+mesh = SubResource("TextMesh_d5x1h")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="big empty forest/followmyroots roots/level6"]
+transform = Transform3D(0.836985, -0.477407, 0.267467, 0.443652, 0.878128, 0.179066, -0.320357, -0.0312133, 0.946782, -1.21263, -4.94674, 0.222855)
+mesh = SubResource("CylinderMesh_42l1d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="big empty forest/followmyroots roots/level6/MeshInstance3D3"]
+transform = Transform3D(1, -8.71322e-09, 0, -4.82009e-09, 1, 3.91136e-11, 1.49012e-08, 3.9101e-10, 1, -0.0707703, 1.02293, 0.00907135)
+mesh = SubResource("CylinderMesh_2jcla")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="big empty forest/followmyroots roots/level6"]
+transform = Transform3D(0.868978, 0.205274, 0.450266, -0.437883, 0.742824, 0.506429, -0.230512, -0.637241, 0.735383, 0.503098, -4.99016, -1.71265)
+mesh = SubResource("CylinderMesh_42l1d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="big empty forest/followmyroots roots/level6/MeshInstance3D4"]
+transform = Transform3D(1, -8.71322e-09, 0, -4.82009e-09, 1, 3.91136e-11, 1.49012e-08, 3.9101e-10, 1, -0.0707703, 1.02293, 0.00907135)
+mesh = SubResource("CylinderMesh_2jcla")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="big empty forest/followmyroots roots/level6"]
+transform = Transform3D(0.333334, 3.65078e-07, -2.01166e-07, 0, 0.333334, 3.94881e-07, -7.45058e-09, -1.86265e-09, 0.333333, -0.125397, -5.32435, -0.282982)
+light_color = Color(1, 0, 0, 1)
+
 [node name="jamieworld" parent="." instance=ExtResource("4_8mm7a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -318.024, -13.2234, -318.175)
 
 [node name="wall" type="MeshInstance3D" parent="jamieworld"]
-transform = Transform3D(-0.0289158, 0, 0.999582, 0, 1, 0, -0.999582, 0, -0.0289158, 7.04615, 1.64203, -2.08241)
+transform = Transform3D(-0.361303, 0, 9.91285, 0, 9.917, 0, -12.4898, 0, -0.286758, 26.2676, 31.6099, -8.78238)
 mesh = SubResource("QuadMesh_8mm7a")
 skeleton = NodePath("../..")
-
-[node name="pig_enemy" parent="jamieworld" instance=ExtResource("5_8mm7a")]
-transform = Transform3D(0.785663, 0, 0.618655, 0, 1, 0, -0.618655, 0, 0.785663, 3.59054, 0.974383, 3.52031)
-
-[node name="pig_enemy2" parent="jamieworld" instance=ExtResource("5_8mm7a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.434648, 0.974383, 2.98535)
-
-[node name="pig_enemy3" parent="jamieworld" instance=ExtResource("5_8mm7a")]
-transform = Transform3D(0.934869, 0, 0.354993, 0, 1, 0, -0.354993, 0, 0.934869, -1.98273, 0.889128, 0.33852)
 
 [node name="big pig enemy" parent="jamieworld" instance=ExtResource("6_hq1ik")]
 transform = Transform3D(3.775, 0, 0, 0, 3.775, 0, 0, 0, 3.775, -11.4366, 0, 0)
@@ -478,19 +584,70 @@ light_energy = 0.1
 omni_range = 3.843
 omni_attenuation = 8.667
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="jamieworld"]
+transform = Transform3D(0.186945, 0, 1.10642, 0, 1.56, 0, -2.32249, 0, 0.0890596, -3.10172, 4.83944, 0)
+mesh = SubResource("TextMesh_u0ygc")
+
+[node name="house" parent="." instance=ExtResource("15_2jcla")]
+transform = Transform3D(4.085, 0, 0, 0, 4.085, 0, 0, 0, 4.085, -319, -12, -330)
+
+[node name="fence" parent="house" instance=ExtResource("9_qwutr")]
+transform = Transform3D(0.949509, 0, 0.313744, 0, 1, 0, -0.313744, 0, 0.949509, 9.36801, -0.935988, -4.6301)
+
+[node name="fence" parent="house/fence" instance=ExtResource("9_qwutr")]
+transform = Transform3D(0.629362, 0, -0.777114, 0, 1, 0, 0.777114, 0, 0.629362, 2.1131, 0, 0.172363)
+
+[node name="fence2" parent="house/fence" instance=ExtResource("9_qwutr")]
+transform = Transform3D(0.177497, 0, -0.984123, 0, 1, 0, 0.984123, 0, 0.177497, 4.54005, 0, 1.50017)
+
+[node name="fence3" parent="house/fence" instance=ExtResource("9_qwutr")]
+transform = Transform3D(-0.501662, 0, -0.865065, 0, 1, 0, 0.865065, 0, -0.501662, 5.72703, 0, 3.40817)
+
+[node name="fence4" parent="house/fence" instance=ExtResource("9_qwutr")]
+transform = Transform3D(0.993045, 0, -0.117745, 0, 1, 0, 0.117745, 0, 0.993045, -16.2871, 0.371516, 5.70679)
+
+[node name="pig_enemy2" parent="." instance=ExtResource("5_8mm7a")]
+transform = Transform3D(-0.275342, 0, 0.29015, 0, 0.4, 0, -0.29015, 0, -0.275342, 44.2372, 1.5289, -56.1286)
+
+[node name="pig_enemy3" parent="." instance=ExtResource("5_8mm7a")]
+transform = Transform3D(0.785663, 0, 0.618655, 0, 1, 0, -0.618655, 0, 0.785663, -314.433, -12.249, -314.655)
+
+[node name="pig_enemy4" parent="." instance=ExtResource("5_8mm7a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -318.459, -12.249, -315.19)
+
+[node name="pig_enemy5" parent="." instance=ExtResource("5_8mm7a")]
+transform = Transform3D(0.934869, 0, 0.354993, 0, 1, 0, -0.354993, 0, 0.934869, -320.007, -12.3343, -317.836)
+
+[node name="end cutscene" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = 0.425
+anchor_top = 0.526
+anchor_right = 0.425
+anchor_bottom = 0.526
+offset_left = -372.6
+offset_top = -267.848
+offset_right = 427.4
+offset_bottom = 332.152
+texture = ExtResource("17_u0ygc")
+
 [connection signal="body_entered" from="level switch/level2" to="." method="_on_level_2_body_entered"]
 [connection signal="body_entered" from="level switch/level3" to="." method="_on_level_3_body_entered"]
-[connection signal="body_entered" from="level switch/level4" to="." method="_on_level_3_body_entered"]
 [connection signal="body_entered" from="level switch/level4" to="." method="_on_level_4_body_entered"]
+[connection signal="body_entered" from="level switch/level5" to="." method="_on_level_5_body_entered"]
+[connection signal="timeout" from="level switch/level5/Timer" to="." method="_on_level5_timeout"]
 [connection signal="body_entered" from="level switch/death barrier" to="." method="_on_death_barrier_body_entered"]
 [connection signal="death" from="test (player spawn)/player" to="." method="_on_death_barrier_body_entered"]
 [connection signal="timeout" from="doors_and_roots_level1/let the player explore" to="doors_and_roots_level1" method="_on_let_the_player_explore_timeout"]
 [connection signal="body_entered" from="big empty forest/Cube_005/Area3D" to="test (player spawn)/player" method="_on_shiny_cube_collected"]
 [connection signal="body_entered" from="big empty forest/Cube_005/Area3D" to="big empty forest/Cube_005" method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="big empty forest/SpotLight3D/Timer" to="." method="_on_level2_spotlight_timer_timeout"]
+[connection signal="body_entered" from="big empty forest/followmyroots roots/level6" to="." method="_on_level_5_body_entered"]
+[connection signal="body_entered" from="big empty forest/followmyroots roots/level6" to="." method="_on_level_6_body_entered"]
 
 [editable path="test (player spawn)"]
 [editable path="doors_and_roots_level1"]
 [editable path="walk_and_enemy_level2"]
 [editable path="big empty forest"]
-[editable path="jamieworld/pig_enemy"]
+[editable path="house"]
+[editable path="pig_enemy3"]

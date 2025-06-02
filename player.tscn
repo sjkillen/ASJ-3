@@ -30,3 +30,11 @@ offset_right = 279.0
 offset_bottom = 117.0
 max_value = 3.0
 value = 3.0
+
+[node name="ProgressBar2" type="ProgressBar" parent="."]
+offset_left = 44.0
+offset_top = 118.0
+offset_right = 276.0
+offset_bottom = 128.0
+max_value = 5.0
+show_percentage = false

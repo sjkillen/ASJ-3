@@ -1,14 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsdhqg5p8y8bg"]
+[gd_scene load_steps=4 format=3 uid="uid://bsdhqg5p8y8bg"]
 
 [ext_resource type="PackedScene" uid="uid://bpbhhiin72yp8" path="res://slimepig/pig.glb" id="1_1og0s"]
 [ext_resource type="Script" uid="uid://ci33hxteh8qmt" path="res://slimepig/pig.gd" id="2_wn63x"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gvkyt"]
-graph_offset = Vector2(-269, -66)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wn63x"]
-radius = 1.03001
-height = 4.13871
+graph_offset = Vector2(-160, -4)
 
 [node name="pig" instance=ExtResource("1_1og0s")]
 script = ExtResource("2_wn63x")
@@ -28,9 +24,3 @@ anim_player = NodePath("../AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 root_node = NodePath("../AnimationTree")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.945899, -0.0393249)
-shape = SubResource("CapsuleShape3D_wn63x")
