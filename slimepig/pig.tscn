@@ -1,26 +1,53 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsdhqg5p8y8bg"]
+[gd_scene load_steps=6 format=3 uid="uid://bsdhqg5p8y8bg"]
 
 [ext_resource type="PackedScene" uid="uid://bpbhhiin72yp8" path="res://slimepig/pig.glb" id="1_1og0s"]
 [ext_resource type="Script" uid="uid://ci33hxteh8qmt" path="res://slimepig/pig.gd" id="2_wn63x"]
+[ext_resource type="AnimationLibrary" uid="uid://bggm4s84bxdqd" path="res://slimepig/animations/walking.glb" id="3_kr6kf"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kr6kf"]
+animation = &"walking/SlimePigRig"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gvkyt"]
-graph_offset = Vector2(-160, -4)
+states/Walking/node = SubResource("AnimationNodeAnimation_kr6kf")
+states/Walking/position = Vector2(425, 136)
+graph_offset = Vector2(-199, -33)
 
 [node name="pig" instance=ExtResource("1_1og0s")]
 script = ExtResource("2_wn63x")
 
 [node name="Skeleton3D" parent="SlimePigRig" index="0"]
-bones/1/rotation = Quaternion(-0.385614, 0, -5.85799e-08, 0.92266)
-bones/12/rotation = Quaternion(0.601501, 0.601501, 0.371748, -0.371748)
-bones/25/rotation = Quaternion(-3.31416e-07, 0.999975, 0.00709155, -7.5496e-08)
-bones/29/rotation = Quaternion(-3.31416e-07, 0.999975, 0.00709155, -7.5496e-08)
-bones/30/rotation = Quaternion(0.984196, 4.7904e-09, 1.21985e-07, -0.177084)
+bones/4/rotation = Quaternion(-0.619535, -7.98901e-07, 3.05962e-07, 0.784969)
+bones/11/position = Vector3(0.142485, 0.146553, -0.702415)
+bones/11/scale = Vector3(1, 1, 1)
+bones/12/position = Vector3(0.338632, -0.471475, -0.502671)
+bones/12/rotation = Quaternion(0.902162, 1.04098e-08, 1.71541e-07, -0.431397)
+bones/13/rotation = Quaternion(0.695909, 0.695909, 0.125345, -0.125345)
+bones/14/position = Vector3(-3.15869e-08, 0.559292, 0.093878)
+bones/20/position = Vector3(-0.142484, 0.146553, -0.702415)
+bones/20/scale = Vector3(1, 1, 1)
+bones/21/position = Vector3(-0.338632, -0.471475, -0.502671)
+bones/21/rotation = Quaternion(0.902162, 1.04098e-08, 1.71542e-07, -0.431397)
+bones/22/rotation = Quaternion(0.695909, -0.695909, -0.125345, -0.125345)
+bones/25/rotation = Quaternion(0.939677, 0.260265, -0.0611265, -0.213385)
+bones/26/position = Vector3(0.314764, 1.78945, 0.0196441)
+bones/26/rotation = Quaternion(0.46898, -6.03138e-08, 4.97885e-08, 0.883209)
+bones/27/rotation = Quaternion(-2.75932e-07, 0.937052, -0.349191, -1.94709e-07)
+bones/27/scale = Vector3(1, 1, 1)
+bones/28/position = Vector3(-0.314764, 1.78945, 0.019644)
+bones/28/rotation = Quaternion(0.786635, 0.00053532, 0.0222476, 0.617017)
+bones/29/rotation = Quaternion(0.0330502, 0.994856, -0.0903104, 0.0318176)
+bones/29/scale = Vector3(1.15369, 1, 1.15369)
+bones/30/rotation = Quaternion(0.717257, -0.0491186, 0.0123395, 0.694965)
+bones/31/rotation = Quaternion(0.088874, 0.995535, 0.00776544, -0.0308259)
+bones/31/scale = Vector3(1.15369, 1, 1.15369)
+bones/32/rotation = Quaternion(0.712293, 0.0645014, -0.0162038, 0.698724)
+bones/33/scale = Vector3(1, 1, 1)
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="1"]
-active = false
-root_node = NodePath(".")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"walking": ExtResource("3_kr6kf")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource("AnimationNodeStateMachine_gvkyt")
 anim_player = NodePath("../AnimationPlayer")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
-root_node = NodePath("../AnimationTree")
