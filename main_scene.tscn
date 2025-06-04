@@ -1,7 +1,8 @@
-[gd_scene load_steps=57 format=4 uid="uid://dffp6u0g2ll7o"]
+[gd_scene load_steps=58 format=4 uid="uid://dffp6u0g2ll7o"]
 
 [ext_resource type="Texture2D" uid="uid://dafedeljkbqvi" path="res://beware sign.png" id="1_0f027"]
 [ext_resource type="Script" uid="uid://m4lnmvc7x4ut" path="res://main_scene.gd" id="1_gyfs4"]
+[ext_resource type="PackedScene" uid="uid://cw8dxo4gd23yu" path="res://screen_effects/grainy.tscn" id="2_ak604"]
 [ext_resource type="PackedScene" uid="uid://bjjr5i2mxy3sq" path="res://levels/jamieworld.tscn" id="4_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://dvyy2ws5nw7jb" path="res://levels/test.tscn" id="4_d5x1h"]
 [ext_resource type="PackedScene" uid="uid://bbxnys4s0xb" path="res://pig_enemy.tscn" id="5_8mm7a"]
@@ -17,7 +18,7 @@
 [ext_resource type="Material" uid="uid://bkhpf5qo3v0rq" path="res://transparent arrow material.tres" id="11_m35m6"]
 [ext_resource type="PackedScene" uid="uid://dyvdy4vpej4eo" path="res://tree_mouth.tscn" id="12_84odl"]
 [ext_resource type="PackedScene" uid="uid://bapoa4t7h3on7" path="res://levels/house.tscn" id="15_2jcla"]
-[ext_resource type="Script" uid="uid://btpg05ok7s81e" path="res://powerup.gd" id="15_6jybn"]
+[ext_resource type="Script" path="res://powerup.gd" id="15_6jybn"]
 [ext_resource type="PackedScene" uid="uid://dm83sobtsbgug" path="res://yum_yum_grains.tscn" id="15_7th4q"]
 [ext_resource type="Texture2D" uid="uid://xianuhfa6b6m" path="res://mouth.png" id="17_u0ygc"]
 
@@ -182,6 +183,8 @@ height = 0.05
 
 [node name="main scene" type="Node3D"]
 script = ExtResource("1_gyfs4")
+
+[node name="Grainy" parent="." instance=ExtResource("2_ak604")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gyfs4")
