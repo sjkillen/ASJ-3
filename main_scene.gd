@@ -58,6 +58,11 @@ func _on_level5_timeout():
 func _on_level_6_body_entered(body):
 	if(body.is_in_group("pig")):
 		#play() pig die
+		var mouthclose = $"big empty forest/followmyroots roots/level6/tree mouth/CSGCombiner3D/CSGBox3D"
+		var tween = create_tween()
+		tween.tween_property(mouthclose,"size",Vector3(4.61,.5,1.715),.18)
+		tween.tween_property(mouthclose,"size",Vector3(4.61,1.8,1.715),.18)
+		$"big empty forest/followmyroots roots/level6/thirsty".mesh.text = "yum..."
 		body.queue_free()
 		end_the_game()
 		

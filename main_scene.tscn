@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://dffp6u0g2ll7o"]
+[gd_scene load_steps=57 format=4 uid="uid://dffp6u0g2ll7o"]
 
 [ext_resource type="Texture2D" uid="uid://dafedeljkbqvi" path="res://beware sign.png" id="1_0f027"]
 [ext_resource type="Script" uid="uid://m4lnmvc7x4ut" path="res://main_scene.gd" id="1_gyfs4"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://6awdsxf5krd2" path="res://levels/fence.tscn" id="9_qwutr"]
 [ext_resource type="Script" uid="uid://d3g55h8ms5do3" path="res://followmyroots.gd" id="11_42l1d"]
 [ext_resource type="Material" uid="uid://bkhpf5qo3v0rq" path="res://transparent arrow material.tres" id="11_m35m6"]
+[ext_resource type="PackedScene" uid="uid://dyvdy4vpej4eo" path="res://tree_mouth.tscn" id="12_84odl"]
 [ext_resource type="PackedScene" uid="uid://bapoa4t7h3on7" path="res://levels/house.tscn" id="15_2jcla"]
 [ext_resource type="Script" uid="uid://btpg05ok7s81e" path="res://powerup.gd" id="15_6jybn"]
 [ext_resource type="PackedScene" uid="uid://dm83sobtsbgug" path="res://yum_yum_grains.tscn" id="15_7th4q"]
@@ -146,7 +147,7 @@ inner_radius = 0.192
 outer_radius = 3.425
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u0ygc"]
-radius = 0.645
+radius = 1.025
 
 [sub_resource type="TextMesh" id="TextMesh_d5x1h"]
 text = "i'm so thirsty"
@@ -550,7 +551,7 @@ transform = Transform3D(0.861857, 0.400028, -0.311732, -0.400029, 0.158399, -0.9
 visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="big empty forest/followmyroots roots/level6"]
-transform = Transform3D(1, 0, -3.8743e-07, 0, 1, -1.11759e-08, 0, 3.72529e-09, 1, -0.0249786, -6.29429, -0.056488)
+transform = Transform3D(0.999999, -7.45058e-09, 2.98023e-08, 1.86265e-09, 1, -1.49012e-08, -5.96046e-08, 1.86265e-08, 1, 0.752861, -6.14035, -1.01584)
 shape = SubResource("SphereShape3D_u0ygc")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="big empty forest/followmyroots roots/level6"]
@@ -562,7 +563,7 @@ spot_range = 14.905
 spot_attenuation = 2.0
 spot_angle = 10.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="big empty forest/followmyroots roots/level6"]
+[node name="thirsty" type="MeshInstance3D" parent="big empty forest/followmyroots roots/level6"]
 transform = Transform3D(-1.26758, 0.0195428, -0.714065, -0.0616794, 1.44603, 0.149067, 0.711664, 0.160135, -1.25894, 0, -5.58874, 0)
 mesh = SubResource("TextMesh_d5x1h")
 
@@ -586,6 +587,9 @@ mesh = SubResource("CylinderMesh_2jcla")
 transform = Transform3D(0.333334, 3.65078e-07, -2.01166e-07, 0, 0.333334, 3.94881e-07, -7.45058e-09, -1.86265e-09, 0.333333, -0.125397, -5.32435, -0.282982)
 light_color = Color(1, 0, 0, 1)
 omni_range = 2.776
+
+[node name="tree mouth" parent="big empty forest/followmyroots roots/level6" instance=ExtResource("12_84odl")]
+transform = Transform3D(0.0507155, -0.0247651, 0.798006, 0.059959, 0.797475, 0.020938, -0.796136, 0.0584823, 0.0524117, 1.2578, -5.72054, -0.798935)
 
 [node name="jamieworld" parent="." instance=ExtResource("4_8mm7a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -318.024, -13.2234, -318.175)
