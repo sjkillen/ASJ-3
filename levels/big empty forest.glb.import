@@ -31,12 +31,9 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
-import_script/path=""
+import_script/path="uid://bibq06r2nskhq"
 _subresources={
 "nodes": {
-"PATH:Cube": {
-"generate/physics": true
-},
 "PATH:Cube_001": {
 "generate/physics": true
 },
@@ -56,13 +53,13 @@ _subresources={
 "PATH:Cube_006": {
 "generate/physics": true
 },
-"PATH:Cylinder": {
+"PATH:GiantTree": {
 "generate/physics": true
 },
-"PATH:Cylinder_001": {
+"PATH:Ground": {
 "generate/physics": true
 },
-"PATH:Sphere": {
+"PATH:Piles": {
 "generate/physics": true
 }
 }

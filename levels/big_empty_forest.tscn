@@ -8,7 +8,7 @@ size = Vector3(2, 2, 2)
 
 [node name="big empty forest" instance=ExtResource("1_rfvyx")]
 
-[node name="Cube_005" parent="." index="8"]
+[node name="Cube_005" parent="." index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.7596, 8.17863, 10.0842)
 script = ExtResource("2_2vr7b")
 
