@@ -2,16 +2,17 @@ extends CharacterBody3D
 
 #var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity = 9.8
-var speed = 9.5
+var speed = 7
 var turnspeed = 1.45
 var damage = 1
 var target_to_pursue
+var moving_toward_player = false
 var moving_forward = Vector3(1,0,0)
 func _ready():
 	target_to_pursue = get_tree().get_nodes_in_group("player")[0]
 func _physics_process(delta):
 	velocity.y += -gravity * delta
-	if(not(Globals.level == 2 or Globals.level == 5)): 
+	if(not(moving_toward_player)): 
 		rotate_y(turnspeed*delta)
 	else: 
 		look_at(Vector3(
@@ -23,8 +24,14 @@ func _physics_process(delta):
 	velocity.x = movement_dir.x * speed
 	velocity.z = movement_dir.z * speed
 	move_and_slide()
+	
 
 
 func _on_damage_hitbox_body_entered(body):
 	if body.is_in_group("player"):
 		body.take_damage(self)
+
+
+func _on_aggro_timer_timeout():
+	moving_toward_player = false
+	turnspeed *= (randi_range(0,1)*2)-1 # -1 or 1

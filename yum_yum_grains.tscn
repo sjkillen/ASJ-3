@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://dm83sobtsbgug"]
+
+[ext_resource type="Texture2D" uid="uid://ce4bgut6hr2yt" path="res://grains.png" id="1_n1nmj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8oioi"]
+albedo_color = Color(0.772549, 0.862745, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vmjsg"]
+material = SubResource("StandardMaterial3D_8oioi")
+size = Vector3(0.19, 0.915, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aldh5"]
+albedo_texture = ExtResource("1_n1nmj")
+
+[sub_resource type="QuadMesh" id="QuadMesh_swu25"]
+material = SubResource("StandardMaterial3D_aldh5")
+
+[node name="YumYum Grains" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_vmjsg")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.90681e-08, 0, 0.665, 0, 0.905, 0, -0.665, 0, -2.90681e-08, 0.0966715, 0, 0)
+mesh = SubResource("QuadMesh_swu25")

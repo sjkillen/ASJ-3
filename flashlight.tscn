@@ -17,5 +17,6 @@ mesh = SubResource("CylinderMesh_nnxok")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.317425, 0, 0)
-spot_range = 10.0
+spot_range = 18.006
+spot_angle = 40.0
 spot_angle_attenuation = 3.03143

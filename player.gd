@@ -1,13 +1,16 @@
 extends CharacterBody3D
 
 var gravity = 9.8
-var speed = 4.0  # movement speed
+var speed = 4.5
+var runspeed = 20
+var currentspeed = speed
 var jump_speed = 4.9  # determines jump height
 var mouse_sensitivity = 0.002  # turning speed
 var hitpoints = 3
-var runpoints = 5
+var runpoints = 16
 var running = false
 signal death
+var yumyum = false
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
@@ -33,31 +36,52 @@ func get_input():
 	return input
 
 func _physics_process(delta):
-	if(Input.is_action_just_pressed("run")):
-		if(runpoints > 0):
-			running = true
-			speed = 20
-	else: if(Input.is_action_just_released("run")):
-		running = false
-		speed=4
-	if(running):
-		runpoints -= delta*4
-		if(runpoints < 0): 
-			speed=4
+	if(not yumyum):
+		if(Input.is_action_just_pressed("run")):
+			if(runpoints > 0):
+				running = true
+				currentspeed = runspeed
+		else: if(Input.is_action_just_released("run")):
 			running = false
-	else:
-		speed = 4
-		runpoints += delta*2
-		if(runpoints > 5): runpoints = 5
+			currentspeed = speed
+		if(running):
+			runpoints -= delta*3
+			if(runpoints < 0): 
+				currentspeed=speed
+				running = false
+		else:
+			currentspeed = speed
+			runpoints += delta*4.2
+			if(runpoints > 16): runpoints = 16
 	$ProgressBar2.value = runpoints
 	velocity.y += -gravity * delta
 	var input = get_input()
 	var movement_dir = transform.basis * Vector3(input.x, 0, input.y)
-	velocity.x = movement_dir.x * speed
-	velocity.z = movement_dir.z * speed
+	velocity.x = movement_dir.x * currentspeed
+	velocity.z = movement_dir.z * currentspeed
 	move_and_slide()
-
-
+	if (yumyum):
+		if(Input.is_action_just_pressed("run")):
+			yum()
+func get_yumyum():
+	$"YumYum Grains".visible = true
+	yumyum = true
+func yum():
+	var tween = create_tween()
+	var tween2 = create_tween()
+	tween2.tween_property($"Camera3D/flashlight","rotation",Vector3(0,0,0),0.15)
+	tween.tween_property($"YumYum Grains","position",Vector3(1.015,-0.02,0.89),0.09)
+	tween2.tween_property($"Camera3D/flashlight","position",Vector3(-0.5,-.538,-.787),0.36)
+	tween.tween_property($"YumYum Grains","rotation",Vector3(0,deg_to_rad(107.7),deg_to_rad(-14)),0.05)
+	tween.tween_property($"YumYum Grains","rotation",Vector3(0,deg_to_rad(107.7),deg_to_rad(14)),0.1)
+	tween.tween_property($"YumYum Grains","rotation",Vector3(0,deg_to_rad(107.7),deg_to_rad(-14)),0.1)
+	tween.tween_property($"YumYum Grains","rotation",Vector3(0,deg_to_rad(107.7),0),0.08)
+	tween.tween_property($"YumYum Grains","position",Vector3(1.015,0,0.89),0.09)
+	tween2.tween_property($"Camera3D/flashlight","rotation",Vector3(0,deg_to_rad(90),0),0.1)
+	var findpigs = get_tree().get_nodes_in_group("pig")
+	for pig in findpigs:
+		pig.moving_toward_player = true
+		pig.find_child("AggroTimer").start(1.1)
 
 func add_cube():
 	jump_speed = 20

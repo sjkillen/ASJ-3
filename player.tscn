@@ -1,11 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvijnui60l6ve"]
+[gd_scene load_steps=9 format=3 uid="uid://dvijnui60l6ve"]
 
 [ext_resource type="PackedScene" uid="uid://usm4tltpc7y8" path="res://flashlight.tscn" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bpv6kwwt6yhb" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://dm83sobtsbgug" path="res://yum_yum_grains.tscn" id="3_i3pqv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4flbx"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3pqv"]
+bg_color = Color(0.0823529, 0.0352941, 0.00784314, 0.443137)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqtel"]
+bg_color = Color(1, 1, 0, 0.870588)
+
+[sub_resource type="Theme" id="Theme_sweqy"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_i3pqv")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_hqtel")
 
 [node name="player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_onrkg")
@@ -32,9 +43,14 @@ max_value = 3.0
 value = 3.0
 
 [node name="ProgressBar2" type="ProgressBar" parent="."]
-offset_left = 44.0
+offset_left = 42.0
 offset_top = 118.0
 offset_right = 276.0
-offset_bottom = 128.0
-max_value = 5.0
+offset_bottom = 121.0
+theme = SubResource("Theme_sweqy")
+max_value = 16.0
 show_percentage = false
+
+[node name="YumYum Grains" parent="." instance=ExtResource("3_i3pqv")]
+transform = Transform3D(-0.304465, 0, 0.952523, 0, 1, 0, -0.952523, 0, -0.304465, 1.01454, 0, 0.890029)
+visible = false
