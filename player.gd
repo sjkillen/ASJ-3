@@ -21,13 +21,16 @@ func _input(event):
 		$Camera3D.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(90), deg_to_rad(90))
 		
 	if event.is_action_pressed("exit game"):
-		get_tree().quit()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_speed
 	if Input.is_action_just_pressed("toggle light"):
-		if($Camera3D/flashlight/SpotLight3D.visible): $Camera3D/flashlight/SpotLight3D.visible = false
-		else: $Camera3D/flashlight/SpotLight3D.visible = true
+		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		else:
+			if($Camera3D/flashlight/SpotLight3D.visible): $Camera3D/flashlight/SpotLight3D.visible = false
+			else: $Camera3D/flashlight/SpotLight3D.visible = true
 #	if Input.is_action_just_pressed("interact"):
 #		pass
 		
