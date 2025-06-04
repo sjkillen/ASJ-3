@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyvdy4vpej4eo"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_ax2jr"]
+size = Vector3(0.5, 1, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ho8k3"]
+albedo_color = Color(0.45756, 0.307045, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ta5j"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="tree mouth" type="Node3D"]
+
+[node name="tooth" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0.452028, -0.686382)
+mesh = SubResource("PrismMesh_ax2jr")
+
+[node name="tooth2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -0.553368, 0.410398, -0.675769)
+mesh = SubResource("PrismMesh_ax2jr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, -7.64274e-15, 8.74228e-08, 1, -8.74228e-08, 0, -8.74228e-08, -1, 0.289762, -0.346814, -0.417778)
+mesh = SubResource("PrismMesh_ax2jr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, -7.64274e-15, 8.74228e-08, 1, -8.74228e-08, 0, -8.74228e-08, -1, -0.922693, -0.344578, -0.504355)
+mesh = SubResource("PrismMesh_ax2jr")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.316354, 0, 0.31098)
+radius = 1.625
+material = SubResource("StandardMaterial3D_ho8k3")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, -0.145, 0, -1.02971)
+operation = 2
+size = Vector3(4.61, 1.8, 1.715)
+material = SubResource("StandardMaterial3D_2ta5j")
