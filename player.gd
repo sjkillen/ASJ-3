@@ -84,7 +84,7 @@ func yum():
 	var findpigs = get_tree().get_nodes_in_group("pig")
 	for pig in findpigs:
 		pig.moving_toward_player = true
-		pig.find_child("AggroTimer").start(1.1)
+		pig.find_child("AggroTimer").start(1.25)
 
 func add_cube():
 	jump_speed = 20
