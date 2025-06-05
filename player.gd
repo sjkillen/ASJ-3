@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 var gravity = 9.8
 var speed = 4.5
@@ -47,7 +48,7 @@ func _physics_process(delta):
 		else: if(Input.is_action_just_released("run")):
 			running = false
 			currentspeed = speed
-		if(running):
+		if running and is_moving_2d():
 			runpoints -= delta*3
 			if(runpoints < 0): 
 				currentspeed=speed
@@ -85,6 +86,9 @@ func yum():
 	for pig in findpigs:
 		pig.moving_toward_player = true
 		pig.find_child("AggroTimer").start(1.25)
+
+func is_moving_2d() -> bool:
+	return Vector2(velocity.x, velocity.z).length() > 0.01
 
 func add_cube():
 	jump_speed = 20

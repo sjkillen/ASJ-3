@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/big empty forest.glb-f726b0bfe8364185c3e6d754
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="NavigationRegion3D"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0

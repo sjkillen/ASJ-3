@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbxnys4s0xb"]
+[gd_scene load_steps=5 format=3 uid="uid://bbxnys4s0xb"]
 
 [ext_resource type="Script" uid="uid://2p80cr5vtfrm" path="res://pig_enemy.gd" id="1_2dyq1"]
 [ext_resource type="PackedScene" uid="uid://bsdhqg5p8y8bg" path="res://slimepig/pig.tscn" id="2_c1vts"]
+[ext_resource type="Script" uid="uid://b2w4a7hlqxr1w" path="res://navigation_agent_3d.gd" id="3_c1vts"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xc8pd"]
 
@@ -13,6 +14,7 @@ transform = Transform3D(-7.43094e-08, 1.7, -7.43094e-08, 0, -7.43094e-08, -1.7, 
 shape = SubResource("CapsuleShape3D_xc8pd")
 
 [node name="pig" parent="." instance=ExtResource("2_c1vts")]
+unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="damage hitbox" type="Area3D" parent="."]
@@ -26,5 +28,10 @@ shape = SubResource("CapsuleShape3D_xc8pd")
 wait_time = 1.1
 one_shot = true
 
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_c1vts")
+
 [connection signal="body_entered" from="damage hitbox" to="." method="_on_damage_hitbox_body_entered"]
 [connection signal="timeout" from="AggroTimer" to="." method="_on_aggro_timer_timeout"]
+[connection signal="navigation_finished" from="NavigationAgent3D" to="NavigationAgent3D" method="_on_navigation_finished"]

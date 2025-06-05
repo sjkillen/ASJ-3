@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/test.glb-1c42d5083235694536f1220409305835.scn
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="NavigationRegion3D"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0

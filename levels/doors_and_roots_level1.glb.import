@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/doors_and_roots_level1.glb-a1013c92b931b25c29
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="NavigationRegion3D"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
@@ -56,9 +56,6 @@ _subresources={
 "generate/physics": true
 },
 "PATH:Cylinder": {
-"generate/physics": true
-},
-"PATH:player": {
 "generate/physics": true
 }
 }

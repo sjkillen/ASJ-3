@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/walk_and_enemy_level2.glb-d7d5995c1595aab536d
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="NavigationRegion3D"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
