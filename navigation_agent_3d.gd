@@ -31,13 +31,12 @@ func _process(_delta: float) -> void:
 func get_path_pos() -> Vector3:
 	if not get_parent().moving_toward_player and not wander_location_valid:
 		return get_parent().global_position
-	if not is_target_reachable():
-		return get_parent().global_position
 	return %NavigationAgent3D.get_next_path_position()
 
 func wander():
-	if not wander_location_valid or is_target_reached():
+	if not wander_location_valid or is_target_reached() or not is_target_reachable():
 		path_to_random()
+
 
 func _on_navigation_finished() -> void:
 	if not get_parent().moving_toward_player:
