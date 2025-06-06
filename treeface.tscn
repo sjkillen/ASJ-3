@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://bnicreymbpnno"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3u3y"]
+albedo_color = Color(1, 0.192157, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yh1o0"]
+material = SubResource("StandardMaterial3D_i3u3y")
+size = Vector3(3.32, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_10778"]
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_cubxp"]
+material = SubResource("StandardMaterial3D_10778")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_opun2"]
+albedo_color = Color(0.564706, 0.0705882, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_od22f"]
+material = SubResource("StandardMaterial3D_opun2")
+top_radius = 5.0
+bottom_radius = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yh1o0"]
+albedo_color = Color(0.403922, 0.0313726, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cubxp"]
+albedo_color = Color(0.172549, 0.0509804, 0, 1)
+metallic = 0.06
+
+[node name="face" type="Node3D"]
+
+[node name="eybrow1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.835941, 0.548819, 0, -0.548819, 0.835941, 0, 0, 0, 1, -2.64799, 1.34621, 0)
+mesh = SubResource("BoxMesh_yh1o0")
+
+[node name="eybrow2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.835807, -0.549023, 0, 0.549023, 0.835807, 0, 0, 0, 1, 2.648, 1.346, 0)
+mesh = SubResource("BoxMesh_yh1o0")
+
+[node name="eye" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75408, 0, 0)
+mesh = SubResource("SphereMesh_cubxp")
+
+[node name="eye2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.754, 0, 0)
+mesh = SubResource("SphereMesh_cubxp")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1, 0)
+mesh = SubResource("CylinderMesh_od22f")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGMesh3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+operation = 2
+size = Vector3(21.94, 14.52, 12)
+material = SubResource("StandardMaterial3D_yh1o0")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGMesh3D"]
+operation = 2
+radius = 4.104
+material = SubResource("StandardMaterial3D_cubxp")

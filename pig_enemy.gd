@@ -9,8 +9,15 @@ var damage := 1.
 const FORWARD := Vector3(1., 0., 0.)
 @export var wandering := false
 
+func _input(event):
+	if event.is_action_pressed("debug button"):
+		print(self," nextpos ",%NavigationAgent3D.get_path_pos())
+		pass
+		
 func _ready() -> void:
 	await %NavigationAgent3D.save_current_region()
+	$footstep/Timer.start(.5+(randf()/2))
+	$pigsound/Timer.start(randf()*10+3)
 	
 func _physics_process(delta):
 	velocity.y -= gravity * delta
@@ -60,3 +67,11 @@ func _on_damage_hitbox_body_entered(body):
 func _on_aggro_timer_timeout():
 	moving_toward_player = false
 	turnspeed *= (randi_range(0, 1)*2)-1 # -1 or 1
+
+
+func _on_footstep_timer_timeout():
+	if(is_moving()):$footstep.play()
+
+func _on_pigsound_timer_timeout():
+	$pigsound.play()
+	$pigsound/Timer.start(randf()*10+3)

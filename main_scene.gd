@@ -1,12 +1,15 @@
 extends Node3D
 
+func _ready():
+	$music.play()
 func _process(_delta):
 	pass
 	
 func _input(event):
 	if event.is_action_pressed("debug button"):
+		print("player position ",get_tree().get_nodes_in_group("player")[0].get_global_position())
+		$pig_enemy2.set_global_position($"debug pig spawn".position)
 		pass
-		#end_the_game()
 
 func _on_level_2_body_entered(body):
 	if(body.is_in_group("player")):
@@ -16,6 +19,7 @@ func _on_level_2_body_entered(body):
 		tween.tween_property($WorldEnvironment.get_environment(),"volumetric_fog_density",
 		0.005,8)
 func _on_level2_spotlight_timer_timeout():
+	$"big empty forest/SpotLight3D/spotlight sound".play()
 	$"big empty forest/SpotLight3D".set_color(Color(.9,.9,.9,1))
 	$"big empty forest/SpotLight3D2".set_color(Color(.9,.9,.9,1))
 	$"big empty forest/SpotLight3D2".set_color(Color(.9,.9,.9,1))
@@ -25,7 +29,9 @@ func _on_level2_spotlight_timer_timeout():
 	var tween = create_tween()
 	tween.tween_property($WorldEnvironment.get_environment(),"volumetric_fog_density",
 		0.008,8)
-
+func _on_level_2_pig_start_attack_body_entered(body):
+	if(body.is_in_group("player")):
+		$pig_enemy2.moving_toward_player = true
 	
 	
 func _on_level_3_body_entered(body):
@@ -37,7 +43,7 @@ func _on_level_3_body_entered(body):
 		$pig_enemy2.moving_toward_player = false
 		var tween = create_tween()
 		tween.tween_property($WorldEnvironment.get_environment(),"volumetric_fog_density",
-			0.011,10)
+			0.01,10)
 		Globals.level = 4
 		follow_my_roots()
 	
@@ -56,6 +62,7 @@ func follow_my_roots():
 	#var tween2 = create_tween()
 	tween.tween_property($"big empty forest/followmyroots roots","position",Vector3(24,-2,97),6)
 	#tween2.tween_property()
+	$"jamieworld/lights to indicate barn".visible = true
 
 func _on_level_5_body_entered(body):
 	if(body.is_in_group("player")):
@@ -64,27 +71,48 @@ func _on_level_5_body_entered(body):
 		var tween2 = create_tween()
 		tween.tween_property($house/Cube_005,"position",$house/Cube_005.position+Vector3(0,0,1),1)
 		tween2.tween_property($house/Cube_009,"position",$house/Cube_009.position-Vector3(0,0,1),1)
+		$"jamieworld/lights to indicate barn".visible = false
 		$"level switch/level5/Timer".start(1.5)
 func _on_level5_timeout():
-	Globals.level = 5
+	if (Globals.level < 5): Globals.level = 5
 	$"big empty forest/followmyroots roots/level6".visible = true
 		
 func _on_level_6_body_entered(body):
 	if(body.is_in_group("pig")):
-		#play() pig die
 		var mouthclose = $"big empty forest/followmyroots roots/level6/tree mouth/CSGCombiner3D/CSGBox3D"
 		var tween = create_tween()
 		tween.tween_property(mouthclose,"size",Vector3(4.61,.5,1.715),.18)
 		tween.tween_property(mouthclose,"size",Vector3(4.61,1.8,1.715),.18)
 		$"big empty forest/followmyroots roots/level6/thirsty".mesh.text = "yum..."
 		body.queue_free()
+		$"big empty forest/followmyroots roots/level6/pigdie".play()
 		var tween2 = create_tween()
 		tween2.tween_property($WorldEnvironment.get_environment(),"volumetric_fog_albedo",
 			Color(1,.9,.9,1),3)
-		end_the_game()
+		$"big empty forest/followmyroots roots/level6/Timer".start(4.2)
 		
+func _on_mouth_timer_timeout():
+	$"big empty forest/followmyroots roots/level6/thirsty".mesh.text = """return 
+		to my trunk"""
+	$"big empty forest/GiantTree/face".visible = true
+	get_tree().get_first_node_in_group("player").remove_yumyum()
+	Globals.level = 6
+
+
+
+func _on_level7_body_entered(body):
+	print("level 7 body entered")
+	if(body.is_in_group("player") and (Globals.level == 6)):
+		print("end the game sequence")
+		body.gravity = 0
+		body.able_to_move = false
+		var tween = create_tween()
+		tween.tween_property(body,"position",body.position+Vector3(0,20,0),3)
+		end_the_game_sequence()
+
+
 var game_ending = false
-func end_the_game():
+func end_the_game_sequence():
 	if(not game_ending):
 		game_ending = true
 		var tween = create_tween()
@@ -99,6 +127,12 @@ func end_the_game():
 		tween.tween_property($"end cutscene","scale",Vector2(12,12),2)
 		tween2.tween_property($"end cutscene","position",$"end cutscene".position,6)
 		tween2.tween_property($"end cutscene","position",Vector2(-4000,-3100),2)
+		tween.tween_property($"thanks for playing","modulate",Color(1,1,1,1),6)
+		tween2.tween_callback($"end cutscene/damage".play)
+		tween2.tween_callback($"end cutscene/damage".play).set_delay(.15)
+		tween2.tween_callback($"end cutscene/damage".play).set_delay(.1)
+		tween2.tween_callback($"end cutscene/damage".play).set_delay(.3)
+		tween2.tween_callback($"end cutscene/damage".play).set_delay(.2)
 	
 
 
@@ -117,8 +151,3 @@ func _on_death_barrier_body_entered(body):
 		tween.tween_property(body,"gravity",9.8,0.1)
 		tween.tween_property(body,"hitpoints",3,.1)
 		tween.tween_property(body.get_node("ProgressBar"),"value",3,0.3)
-
-
-func _on_level_2_pig_start_attack_body_entered(body):
-	if(body.is_in_group("player")):
-		$pig_enemy2.moving_toward_player = true

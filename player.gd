@@ -12,6 +12,7 @@ var runpoints = 16
 var running = false
 signal death
 var yumyum = false
+var able_to_move = true
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
@@ -32,6 +33,7 @@ func _input(event):
 		else:
 			if($Camera3D/flashlight/SpotLight3D.visible): $Camera3D/flashlight/SpotLight3D.visible = false
 			else: $Camera3D/flashlight/SpotLight3D.visible = true
+			$Camera3D/flashlight/AudioStreamPlayer3D.play()
 #	if Input.is_action_just_pressed("interact"):
 #		pass
 		
@@ -45,6 +47,7 @@ func _physics_process(delta):
 			if(runpoints > 0):
 				running = true
 				currentspeed = runspeed
+				_on_footstep_timer_timeout()
 		else: if(Input.is_action_just_released("run")):
 			running = false
 			currentspeed = speed
@@ -63,14 +66,18 @@ func _physics_process(delta):
 	var movement_dir = transform.basis * Vector3(input.x, 0, input.y)
 	velocity.x = movement_dir.x * currentspeed
 	velocity.z = movement_dir.z * currentspeed
-	move_and_slide()
+	if (able_to_move):move_and_slide()
 	if (yumyum):
 		if(Input.is_action_just_pressed("run")):
 			yum()
 func get_yumyum():
 	$"YumYum Grains".visible = true
 	yumyum = true
+func remove_yumyum():
+	$"YumYum Grains".visible = false
+	yumyum = false
 func yum():
+	$"YumYum Grains/AudioStreamPlayer3D".play()
 	var tween = create_tween()
 	var tween2 = create_tween()
 	tween2.tween_property($"Camera3D/flashlight","rotation",Vector3(0,0,0),0.15)
@@ -85,7 +92,7 @@ func yum():
 	var findpigs = get_tree().get_nodes_in_group("pig")
 	for pig in findpigs:
 		pig.moving_toward_player = true
-		pig.find_child("AggroTimer").start(1.25)
+		pig.find_child("AggroTimer").start(2.1)
 
 func is_moving_2d() -> bool:
 	return Vector2(velocity.x, velocity.z).length() > 0.01
@@ -93,6 +100,7 @@ func is_moving_2d() -> bool:
 func add_cube():
 	jump_speed = 20
 func take_damage(enemy):
+	enemy.find_child("damage").play()
 	hitpoints = hitpoints - enemy.damage
 	position += (get_global_position() - enemy.get_global_position())*0.5
 	print("took ",enemy.damage," damage. ",hitpoints," life left")
@@ -100,3 +108,10 @@ func take_damage(enemy):
 	hpprogresstween.tween_property($ProgressBar,"value",hitpoints,0.2)
 	if(hitpoints==0):
 		emit_signal("death",self)
+func is_moving() -> bool:
+	return Vector2(velocity.x, velocity.z).length() > 0.01
+
+func _on_footstep_timer_timeout():
+	if(is_moving()):$footstep.play()
+	if(running):$footstep/Timer.start(.128+(randf()/10))
+	else:$footstep/Timer.start(.4+(randf()/3))
