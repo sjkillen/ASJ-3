@@ -92,7 +92,7 @@ func yum():
 	var findpigs = get_tree().get_nodes_in_group("pig")
 	for pig in findpigs:
 		pig.moving_toward_player = true
-		pig.find_child("AggroTimer").start(2.1)
+		#pig.find_child("AggroTimer").start(2.1)
 
 func is_moving_2d() -> bool:
 	return Vector2(velocity.x, velocity.z).length() > 0.01

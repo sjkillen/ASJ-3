@@ -33,6 +33,10 @@ func _physics_process(delta):
 	velocity.x = movement_dir.x * speed
 	velocity.z = movement_dir.z * speed
 	
+	var v = %NavigationAgent3D.safen_velocity(velocity)
+	velocity.x = v.x * speed
+	velocity.z = velocity.z * speed
+	
 	move_and_slide()
 
 func _process(_delta: float) -> void:

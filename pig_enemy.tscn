@@ -33,6 +33,8 @@ one_shot = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 unique_name_in_owner = true
+radius = 3.0
+neighbor_distance = 10.0
 script = ExtResource("3_c1vts")
 
 [node name="footstep" type="AudioStreamPlayer3D" parent="."]

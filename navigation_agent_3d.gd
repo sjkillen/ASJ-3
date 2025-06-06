@@ -4,6 +4,8 @@ var starting_region: RID
 var nav_ready := false
 var wander_location: Vector3
 var wander_location_valid := false
+var safe_velocity: Vector3
+var safe_velocity_valid := false
 
 # Method is async because it takes a few frames for the nav region to register
 func save_current_region():
@@ -41,3 +43,12 @@ func wander():
 func _on_navigation_finished() -> void:
 	if not get_parent().moving_toward_player:
 		path_to_random()
+
+func velocity_computed(s: Vector3):
+	safe_velocity = s
+	safe_velocity_valid = true
+
+func safen_velocity(v: Vector3) -> Vector3:
+	if not safe_velocity_valid:
+		return v
+	return safe_velocity
