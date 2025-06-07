@@ -13,8 +13,8 @@ func _input(event):
 
 func _on_level_2_body_entered(body):
 	if(body.is_in_group("player")):
+		if(Globals.level < 2):$"big empty forest/SpotLight3D/Timer".start(2)
 		Globals.level = 2
-		$"big empty forest/SpotLight3D/Timer".start(2)
 		var tween = create_tween()
 		tween.tween_property($WorldEnvironment.get_environment(),"volumetric_fog_density",
 		0.005,8)
