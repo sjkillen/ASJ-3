@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 var gravity := 9.8
 var speed := 2.
+var runspeed = 2.5
 var turnspeed := 1.45
 var damage := 1.
 @onready var target_to_pursue: Player = get_tree().get_nodes_in_group("player")[0]
@@ -70,7 +71,7 @@ func _on_damage_hitbox_body_entered(body):
 
 func _on_aggro_timer_timeout():
 	moving_toward_player = false
-	turnspeed *= (randi_range(0, 1)*2)-1 # -1 or 1
+	#turnspeed *= (randi_range(0, 1)*2)-1 # -1 or 1
 
 
 func _on_footstep_timer_timeout():
@@ -79,3 +80,7 @@ func _on_footstep_timer_timeout():
 func _on_pigsound_timer_timeout():
 	$pigsound.play()
 	$pigsound/Timer.start(randf()*10+3)
+
+signal pitytimer
+func _on_pitytimer_timeout():
+	emit_signal("pitytimer",self)

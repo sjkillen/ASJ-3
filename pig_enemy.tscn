@@ -56,8 +56,12 @@ volume_db = -3.0
 stream = ExtResource("6_bm0j8")
 volume_db = -9.143
 
+[node name="pitytimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="damage hitbox" to="." method="_on_damage_hitbox_body_entered"]
 [connection signal="timeout" from="AggroTimer" to="." method="_on_aggro_timer_timeout"]
 [connection signal="navigation_finished" from="NavigationAgent3D" to="NavigationAgent3D" method="_on_navigation_finished"]
 [connection signal="timeout" from="footstep/Timer" to="." method="_on_footstep_timer_timeout"]
 [connection signal="timeout" from="pigsound/Timer" to="." method="_on_pigsound_timer_timeout"]
+[connection signal="timeout" from="pitytimer" to="." method="_on_pitytimer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=4 uid="uid://dffp6u0g2ll7o"]
+[gd_scene load_steps=77 format=4 uid="uid://dffp6u0g2ll7o"]
 
 [ext_resource type="Texture2D" uid="uid://dafedeljkbqvi" path="res://beware sign.png" id="1_0f027"]
 [ext_resource type="Script" uid="uid://m4lnmvc7x4ut" path="res://main_scene.gd" id="1_gyfs4"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://oryuwyy57rnx" path="res://doors_and_roots_level_1.tscn" id="8_66tet"]
 [ext_resource type="Script" uid="uid://bjtng4cnrwvy8" path="res://doors_and_roots_level_1.gd" id="8_wr18j"]
 [ext_resource type="PackedScene" uid="uid://cdo7qtge8yqe2" path="res://levels/walk_and_enemy_level_2.tscn" id="9_7ycvg"]
+[ext_resource type="Texture2D" uid="uid://di77fv6pgejrd" path="res://Flag_of_Alberta.svg.png" id="9_kv3aw"]
 [ext_resource type="PackedScene" uid="uid://6awdsxf5krd2" path="res://levels/fence.tscn" id="9_qwutr"]
 [ext_resource type="Script" uid="uid://d3g55h8ms5do3" path="res://followmyroots.gd" id="11_42l1d"]
 [ext_resource type="Material" uid="uid://bkhpf5qo3v0rq" path="res://transparent arrow material.tres" id="11_m35m6"]
@@ -20,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bnicreymbpnno" path="res://treeface.tscn" id="12_vimvf"]
 [ext_resource type="AudioStream" uid="uid://dtdx03jacf8c3" path="res://spotlightssound.wav" id="13_fv2he"]
 [ext_resource type="PackedScene" uid="uid://bapoa4t7h3on7" path="res://levels/house.tscn" id="15_2jcla"]
-[ext_resource type="Script" path="res://powerup.gd" id="15_6jybn"]
+[ext_resource type="Script" uid="uid://btpg05ok7s81e" path="res://powerup.gd" id="15_6jybn"]
 [ext_resource type="PackedScene" uid="uid://dm83sobtsbgug" path="res://yum_yum_grains.tscn" id="15_7th4q"]
 [ext_resource type="AudioStream" uid="uid://deosftlhtj56s" path="res://pigdiesound.wav" id="17_5smuj"]
 [ext_resource type="Texture2D" uid="uid://xianuhfa6b6m" path="res://mouth.png" id="17_u0ygc"]
@@ -120,6 +121,12 @@ albedo_texture = ExtResource("7_mo76n")
 [sub_resource type="QuadMesh" id="QuadMesh_2jcla"]
 material = SubResource("StandardMaterial3D_42l1d")
 size = Vector2(6, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o7u2a"]
+albedo_texture = ExtResource("9_kv3aw")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ijoax"]
+material = SubResource("StandardMaterial3D_o7u2a")
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_vimvf"]
 vertices = PackedVector3Array(-73.0542, 1.07034, -52.6259, -73.0542, 1.07034, -53.6259, -73.8042, 1.07034, -54.1259, -74.3042, 1.07034, -55.6259, -75.8042, 1.07034, -55.8759, -75.8042, 1.07034, -32.3759, 9.94576, 1.07034, 2.37408, 9.19576, 1.07034, 3.62408, 9.44576, 1.07034, 3.87408, 43.4458, 1.07034, 7.37408, 75.6958, 1.07034, -44.1259, 75.6958, 1.07034, -46.8759, 74.1958, 1.07034, -46.6259, 74.1958, 1.07034, -43.6259, 6.19576, 1.07034, -52.8759, 6.19576, 1.07034, -12.1259, 8.69576, 1.07034, -11.3759, 70.9458, 1.07034, -53.3759, 68.1958, 1.07034, -53.3759, 66.9458, 1.07034, -52.8759, 71.1958, 1.07034, -50.1259, 72.1958, 1.07034, -47.8759, 72.6958, 1.07034, -41.3759, 73.6958, 1.07034, -24.8759, 72.4458, 1.07034, -27.1259, 9.94576, 1.07034, -9.37592, 72.4458, 1.07034, -34.6259, 72.9458, 1.07034, -38.8759, 72.9458, 1.07034, -32.6259, -70.8042, 1.07034, -12.8759, -70.8042, 1.07034, -11.3759, -70.0542, 1.07034, -10.3759, 3.94576, 1.07034, -11.3759, 3.19576, 1.07034, -10.3759, -65.8042, 1.07034, -52.8759, 21.4458, 1.07034, 41.3741, 75.6958, 1.07034, 53.1241, 75.6958, 1.07034, -16.6259, 1.69576, 1.07034, 5.37408, 3.44576, 1.07034, 3.62408, 2.69576, 1.07034, 2.37408, -75.8042, 1.07034, 28.6241, -74.8042, 1.07034, 29.1241, -73.0542, 1.07034, 23.3741, -75.8042, 1.07034, 11.1241, -74.3042, 1.07034, -4.37592, -75.8042, 1.07034, -4.62592, -76.3042, 1.07034, 2.37408, -74.5542, 1.07034, 3.37408, -72.8042, 1.07034, -5.12592, 2.69576, 1.07034, -9.37592, -71.5542, 1.07034, -6.62592, -72.8042, 1.07034, 5.87408, -72.8042, 1.07034, 6.87408, -69.3042, 1.07034, 22.1241, -3.80424, 1.07034, 36.1241, -71.0542, 1.07034, 22.1241, -75.3042, 1.07034, 11.1241, -74.0542, 1.07034, 9.37408, -83.8042, 1.07034, -9.12592, -84.3042, 1.07034, -2.12592, 3.94576, 1.07034, 4.37408, 5.69576, 1.07034, 5.12408, 0.945755, 1.07034, 37.1241, 5.19576, 1.07034, 38.1241, 7.19576, 1.07034, 5.12408, 13.1958, 1.07034, 9.12408, 13.4458, 1.07034, 39.8741, 27.4458, 1.07034, 24.6241, 39.4458, 1.07034, 11.6241, -75.0542, 1.07034, 32.1241, -75.8042, 1.07034, 55.8741, -73.8042, 1.07034, 34.1241, -72.3042, 1.07034, 34.8741, -59.0542, 1.07034, 55.8741, -58.5542, 1.07034, 37.6241, -35.8042, 83.3203, 35.6241, -35.8042, 83.3203, 36.3741, -35.3042, 83.0703, 36.6241, 89.1958, 31.5703, 62.8741, 88.9458, 31.8203, 61.8741, -53.8042, 1.07034, 55.8741, -53.5542, 1.07034, 38.6241, -47.3042, 1.07034, 55.8741, -46.8042, 1.07034, 40.1241, -42.0542, 1.07034, 55.8741, -41.8042, 1.07034, 41.1241, -35.5542, 1.07034, 55.8741, -35.0542, 1.07034, 42.6241, -30.3042, 1.07034, 55.8741, -30.0542, 1.07034, 43.6241, -25.5542, 1.07034, 55.8741, -25.3042, 1.07034, 44.6241, -19.0542, 1.07034, 55.8741, -18.5542, 1.07034, 46.1241, 7.44576, 1.07034, 45.1241, 10.4458, 1.07034, 45.8741, 9.94576, 1.07034, 45.3741, -13.8042, 1.07034, 55.8741, -13.5542, 1.07034, 47.1241, 16.1958, 1.07034, 46.8741, 16.6958, 1.07034, 47.3741, 19.1958, 1.07034, 47.6241, -7.30424, 1.07034, 55.8741, -6.80424, 1.07034, 48.6241, -2.05424, 1.07034, 55.8741, -1.80424, 1.07034, 49.6241, 4.44576, 1.07034, 55.8741, 4.94576, 1.07034, 51.1241, 26.6958, 1.07034, 55.8741)
@@ -225,6 +232,9 @@ radius = 1.025
 [sub_resource type="TextMesh" id="TextMesh_d5x1h"]
 text = "i'm so thirsty"
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_y5ved"]
+radius = 1.5
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_ghshe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5x1h"]
@@ -291,6 +301,7 @@ spot_angle = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="level switch/level2"]
 transform = Transform3D(1.44917, 0, -0.130125, 0, 1.455, 0, 0.130125, 0, 1.44917, 0, -5.58874, 0)
+visible = false
 mesh = SubResource("TextMesh_gyfs4")
 
 [node name="level3" type="Area3D" parent="level switch"]
@@ -309,6 +320,7 @@ spot_angle = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="level switch/level3"]
 transform = Transform3D(0.990076, 0, 1.0662, 0, 1.455, 0, -1.0662, 0, 0.990076, 0, -5.58874, 0)
+visible = false
 mesh = SubResource("TextMesh_6jybn")
 
 [node name="level4" type="Area3D" parent="level switch"]
@@ -346,6 +358,7 @@ spot_angle = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="level switch/level5"]
 transform = Transform3D(0.93842, 0, 1.86748, 0, 2.09, 0, -1.86748, 0, 0.93842, 0, -5.58874, 0)
+visible = false
 mesh = SubResource("TextMesh_7th4q")
 
 [node name="Timer" type="Timer" parent="level switch/level5"]
@@ -493,6 +506,10 @@ mesh = SubResource("QuadMesh_qwutr")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="doors_and_roots_level1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.901, 3.36585, -3.95166)
 mesh = SubResource("QuadMesh_2jcla")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="doors_and_roots_level1"]
+transform = Transform3D(2.365, 0, 0, 0, 2.365, 0, 0, 0, 2.365, 15.6749, 5.78449, -4.61091)
+mesh = SubResource("QuadMesh_ijoax")
 
 [node name="walk_and_enemy_level2" parent="." instance=ExtResource("9_7ycvg")]
 transform = Transform3D(-0.688354, 0, 0.725374, 0, 1, 0, -0.725374, 0, -0.688354, 15.0716, -15.1761, -96.454)
@@ -717,6 +734,12 @@ one_shot = true
 
 [node name="pigdie" type="AudioStreamPlayer3D" parent="big empty forest/followmyroots roots/level6"]
 stream = ExtResource("17_5smuj")
+
+[node name="pity timer" type="Area3D" parent="big empty forest/followmyroots roots/level6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="big empty forest/followmyroots roots/level6/pity timer"]
+transform = Transform3D(1, 0, 8.9407e-08, 0, 1, 7.45058e-09, -5.96046e-08, 7.45058e-09, 1, -0.140671, -5.97289, -0.317444)
+shape = SubResource("SphereShape3D_y5ved")
 
 [node name="fence" parent="big empty forest" instance=ExtResource("9_qwutr")]
 transform = Transform3D(1.32473, 0, 1.13583, 0, 1.745, 0, -1.13583, 0, 1.32473, 38.0225, -1.91215, 83.9238)
@@ -1032,7 +1055,12 @@ volume_db = -10.0
 [connection signal="timeout" from="big empty forest/SpotLight3D/Timer" to="." method="_on_level2_spotlight_timer_timeout"]
 [connection signal="body_entered" from="big empty forest/followmyroots roots/level6" to="." method="_on_level_6_body_entered"]
 [connection signal="timeout" from="big empty forest/followmyroots roots/level6/Timer" to="." method="_on_mouth_timer_timeout"]
+[connection signal="body_entered" from="big empty forest/followmyroots roots/level6/pity timer" to="." method="_on_pity_timer_body_entered"]
+[connection signal="body_exited" from="big empty forest/followmyroots roots/level6/pity timer" to="." method="_on_pity_timer_body_exited"]
 [connection signal="body_entered" from="jamieworld/Yumyum powerup/YumYum Grains/Area3D" to="jamieworld/Yumyum powerup" method="_on_area_3d_body_entered"]
+[connection signal="pitytimer" from="pig_enemy3" to="." method="_on_pitytimer"]
+[connection signal="pitytimer" from="pig_enemy4" to="." method="_on_pitytimer"]
+[connection signal="pitytimer" from="pig_enemy5" to="." method="_on_pitytimer"]
 
 [editable path="test (player spawn)"]
 [editable path="doors_and_roots_level1"]

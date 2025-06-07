@@ -7,8 +7,8 @@ func _process(_delta):
 	
 func _input(event):
 	if event.is_action_pressed("debug button"):
-		print("player position ",get_tree().get_nodes_in_group("player")[0].get_global_position())
-		$pig_enemy2.set_global_position($"debug pig spawn".position)
+		#print("player position ",get_tree().get_nodes_in_group("player")[0].get_global_position())
+		#$pig_enemy2.set_global_position($"debug pig spawn".position)
 		pass
 
 func _on_level_2_body_entered(body):
@@ -127,6 +127,7 @@ func end_the_game_sequence():
 		tween.tween_property($"end cutscene","scale",Vector2(12,12),2)
 		tween2.tween_property($"end cutscene","position",$"end cutscene".position,6)
 		tween2.tween_property($"end cutscene","position",Vector2(-4000,-3100),2)
+		tween.tween_property($Grainy,"modulate",Color(1,1,1,0),.2)
 		tween.tween_property($"thanks for playing","modulate",Color(1,1,1,1),6)
 		tween2.tween_callback($"end cutscene/damage".play)
 		tween2.tween_callback($"end cutscene/damage".play).set_delay(.15)
@@ -151,3 +152,21 @@ func _on_death_barrier_body_entered(body):
 		tween.tween_property(body,"gravity",9.8,0.1)
 		tween.tween_property(body,"hitpoints",3,.1)
 		tween.tween_property(body.get_node("ProgressBar"),"value",3,0.3)
+
+
+func _on_pity_timer_body_entered(body):
+	if(body.is_in_group("pig")):
+		body.find_child("pitytimer").start(10)
+func _on_pity_timer_body_exited(body):
+	if(body.is_in_group("pig")):
+		if(is_instance_valid(body.find_child("pitytimer"))):body.find_child("pitytimer").stop()
+func _on_pitytimer(pig):
+	var tween = create_tween()
+	var tween2 = create_tween()
+	var originalpositionshape = $"big empty forest/followmyroots roots/level6/CollisionShape3D".get_global_position()
+	var originalpositionmouth = $"big empty forest/followmyroots roots/level6/tree mouth".get_global_position()
+	
+	tween.tween_property($"big empty forest/followmyroots roots/level6/CollisionShape3D","global_position",pig.get_global_position(),1)
+	tween2.tween_property($"big empty forest/followmyroots roots/level6/tree mouth","global_position",pig.get_global_position(),1)
+	tween.tween_property($"big empty forest/followmyroots roots/level6/CollisionShape3D","global_position",originalpositionshape,1)
+	tween2.tween_property($"big empty forest/followmyroots roots/level6/tree mouth","global_position",originalpositionmouth,1)
